@@ -4,9 +4,10 @@ import "./App.css";
 import { Switch, Route } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
-import AddCategory from "./components/AddCategory"; /// REMOVE THIS
+
+import Navbar from "./components/Navbar";
 function App() {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   // useEffect(() => {
   //   dispatch(getUserWithStoredToken());
@@ -16,8 +17,7 @@ function App() {
     <div className="App">
       <div>
         <h1>HELLO</h1>
-        {/* REMOVE THIS ADDCATEGORY */}
-        <AddCategory />
+        <Navbar />
         <Switch></Switch>
       </div>
     </div>
