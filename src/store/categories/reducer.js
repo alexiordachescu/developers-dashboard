@@ -1,4 +1,9 @@
-import { LOADING_CATEGORIES, CATEGORIES_ERROR, ADD_CATEGORY } from "./actions";
+import {
+  LOADING_CATEGORIES,
+  CATEGORIES_ERROR,
+  ADD_CATEGORY,
+  SET_FETCHED_CATEGORIES,
+} from "./actions";
 
 const initialState = {
   loading: false,
@@ -16,6 +21,9 @@ export default (state = initialState, { type, payload }) => {
 
     case ADD_CATEGORY:
       return { ...state, loading: false, rows: [...state.rows, payload] };
+
+    case SET_FETCHED_CATEGORIES:
+      return { ...state, loading: false, rows: payload };
 
     default:
       return state;
