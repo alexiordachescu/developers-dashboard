@@ -4,6 +4,7 @@ import "./App.css";
 import { Switch, Route } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
+
 import Navbar from "./components/Navbar";
 function App() {
   // const dispatch = useDispatch();
@@ -15,6 +16,7 @@ function App() {
   return (
     <div className="App">
       <div>
+        <h1>HELLO</h1>
         <Navbar />
         <Switch></Switch>
       </div>
