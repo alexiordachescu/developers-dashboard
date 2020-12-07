@@ -18,9 +18,11 @@ function App() {
     <div className="App">
       <div>
         <h1>HELLO</h1>
-        <LoginForm />
+
         <Navbar />
-        <Switch></Switch>
+        <Switch>
+          <Route path="/login" component={LoginForm} />
+        </Switch>
       </div>
     </div>
   );
