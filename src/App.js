@@ -6,6 +6,7 @@ import { Switch, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import Navbar from "./components/Navbar";
+import LoginForm from "./components/LoginForm";
 function App() {
   // const dispatch = useDispatch();
 
@@ -17,6 +18,7 @@ function App() {
     <div className="App">
       <div>
         <h1>HELLO</h1>
+        <LoginForm />
         <Navbar />
         <Switch></Switch>
       </div>
