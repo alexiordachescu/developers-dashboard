@@ -1,5 +1,6 @@
 import { apiUrl } from "../../config/constants";
 import axios from "axios";
+import { selectToken } from "../user/selectors";
 
 const getAllSnippetsSuccess = (snippets) => {
   return {
@@ -10,7 +11,6 @@ const getAllSnippetsSuccess = (snippets) => {
 
 export const getAllSnippets = () => {
   return async (dispatch, getState) => {
-    // const userId = selectUser(getState());
     const token = selectToken(getState());
     if (token === null) return;
 
@@ -18,9 +18,9 @@ export const getAllSnippets = () => {
       const response = await axios.get(`${apiUrl}/snippets`, {
         headers: { Authorization: `Bearer ${token} ` },
       });
-      console.log("i am response.data", response.data);
+      //   console.log("i am response.data", response.data);
       // token is still valid
-      //   dispatch(getAllSnippetsSuccess(response.data));
+      dispatch(getAllSnippetsSuccess(response.data));
     } catch (error) {
       console.log(error.message);
     }

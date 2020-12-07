@@ -2,10 +2,13 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllSnippets } from "../store/snippets/actions";
 import { selectAllSnippets } from "../store/snippets/selector";
+import CodeSnippetCard from "../components/CodeSnippetCard";
 
 const Snippets = () => {
   const dispatch = useDispatch();
   const snippets = useSelector(selectAllSnippets);
+
+  console.log("i am snippets", snippets);
 
   useEffect(() => {
     dispatch(getAllSnippets());
@@ -13,12 +16,15 @@ const Snippets = () => {
 
   return (
     <div>
-      <h1>Snippets</h1>
-      <div>
-        {snippets.map((s) => {
-          console.log("i am s in snippets map", s);
-        })}
-      </div>
+      {snippets.map((s) => {
+        return (
+          <CodeSnippetCard
+            name={s.name}
+            content={s.content}
+            comment={s.comment}
+          />
+        );
+      })}
     </div>
   );
 };
