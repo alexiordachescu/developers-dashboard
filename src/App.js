@@ -4,6 +4,7 @@ import "./App.css";
 import { Switch, Route } from "react-router-dom";
 
 import { useDispatch } from "react-redux";
+import AddCategory from "./components/AddCategory"; /// REMOVE THIS
 function App() {
   const dispatch = useDispatch();
 
@@ -15,6 +16,8 @@ function App() {
     <div className="App">
       <div>
         <h1>HELLO</h1>
+        {/* REMOVE THIS ADDCATEGORY */}
+        <AddCategory />
         <Switch></Switch>
       </div>
     </div>
