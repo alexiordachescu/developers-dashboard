@@ -5,8 +5,9 @@ const initialState = {
 };
 
 export default (state = initialState, action) => {
-  switch (action.payload) {
+  switch (action.type) {
     case "LOGIN_SUCCESS":
+      console.log("what?", action.payload);
       localStorage.setItem("token", action.payload.token);
       return { ...state, ...action.payload };
 
