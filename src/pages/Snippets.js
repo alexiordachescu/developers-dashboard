@@ -19,6 +19,7 @@ const Snippets = () => {
       {snippets.map((s) => {
         return (
           <CodeSnippetCard
+            key={s.id}
             name={s.name}
             content={s.content}
             comment={s.comment}
