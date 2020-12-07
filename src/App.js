@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./App.css";
 
 import { Switch, Route } from "react-router-dom";
 
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 import Navbar from "./components/Navbar";
+import Snippets from "./pages/Snippets";
 function App() {
   // const dispatch = useDispatch();
 
@@ -16,7 +17,9 @@ function App() {
     <div className="App">
       <div>
         <Navbar />
-        <Switch></Switch>
+        <Switch>
+          <Route exact path="/developersSnippets" component={Snippets} />
+        </Switch>
       </div>
     </div>
   );
