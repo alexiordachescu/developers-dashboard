@@ -1,12 +1,17 @@
-import React, { useEffect } from "react";
+import React from "react";
 import "./App.css";
 
 import { Switch, Route } from "react-router-dom";
 
-import { useDispatch } from "react-redux";
 
+// import { useDispatch } from "react-redux";
 import Navbar from "./components/Navbar";
+import Snippets from "./pages/Snippets";
+
+
+
 import LoginForm from "./components/LoginForm";
+
 function App() {
   // const dispatch = useDispatch();
 
@@ -21,7 +26,11 @@ function App() {
 
         <Navbar />
         <Switch>
+
+          <Route exact path="/developersSnippets" component={Snippets} />
+
           <Route path="/login" component={LoginForm} />
+
         </Switch>
       </div>
     </div>

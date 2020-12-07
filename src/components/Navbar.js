@@ -1,7 +1,7 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+// import { useDispatch, useSelector } from "react-redux";
 // import { selectToken, selectUser } from "../../store/user/selectors";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 // import { logOut } from "../../store/user/actions";
 
 const Navbar = () => {
