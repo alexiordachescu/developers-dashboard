@@ -1,16 +1,16 @@
 import React from "react";
-// import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 // import { selectToken, selectUser } from "../../store/user/selectors";
 import { Link } from "react-router-dom";
+import { selectToken, selectUser } from "../store/user/selectors";
 // import { logOut } from "../../store/user/actions";
 
 const Navbar = () => {
   //   const dispatch = useDispatch();
-  //   const token = useSelector(selectToken);
-  //   const userLoggedIn = useSelector(selectUser);
-  //   const history = useHistory();
+  const token = useSelector(selectToken);
+  const user = useSelector(selectUser);
 
-  const token = false;
+  //   const history = useHistory();
 
   return (
     <nav>
@@ -32,7 +32,7 @@ const Navbar = () => {
         ) : (
           <>
             <span> | </span>
-            <span>Name</span>
+            <span>Hello, {user.name}</span>
             <button
             //   onClick={() => {
             //     history.push("/login");
