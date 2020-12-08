@@ -7,8 +7,9 @@ import { Switch, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Snippets from "./pages/Snippets";
 
-import LoginForm from "./components/LoginForm";
 import Links from "./pages/Links";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 
 function App() {
   // const dispatch = useDispatch();
@@ -23,7 +24,8 @@ function App() {
       <Switch>
         <Route exact path="/developersLinks" component={Links} />
         <Route exact path="/developersSnippets" component={Snippets} />
-        <Route path="/login" component={LoginForm} />
+        <Route path="/login" component={Login} />
+        <Route path="/signUp" component={Signup} />
       </Switch>
     </div>
   );
