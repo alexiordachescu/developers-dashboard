@@ -4,17 +4,8 @@ import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
-import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import {
-  dark,
-  dracula,
-  tomorrow,
-  a11yDark,
-} from "react-syntax-highlighter/dist/esm/styles/prism";
-import { Link } from "react-router-dom";
 
 const useStyles = makeStyles({
   root: {
