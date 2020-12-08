@@ -4,7 +4,7 @@ const initialState = {
   email: null,
 };
 
-export default (state = initialState, action) => {
+const userReducer = (state = initialState, action) => {
   switch (action.type) {
     case "LOGIN_SUCCESS":
       console.log("what?", action.payload);
@@ -22,3 +22,5 @@ export default (state = initialState, action) => {
       return state;
   }
 };
+
+export default userReducer;
