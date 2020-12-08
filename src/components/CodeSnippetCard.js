@@ -14,6 +14,7 @@ import {
   editCommentSnippet,
 } from "../store/snippets/actions";
 import TextField from "@material-ui/core/TextField";
+import ClipBoard from "./ClipBoard";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -75,6 +76,7 @@ const CodeSnippetCard = (props) => {
                 children={props.content}
                 showLineNumbers={true}
               />
+              <ClipBoard code={props.content} />
             </Typography>
           ) : (
             <div>
