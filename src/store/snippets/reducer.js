@@ -16,6 +16,9 @@ export default (state = initialState, action) => {
         }),
       };
 
+    case "ADD_SNIPPET_SUCCESS":
+      return { ...state, all: [...state.all, action.payload] };
+
     default:
       return state;
   }
