@@ -17,6 +17,10 @@ const useStyles = makeStyles({
 });
 
 const LinkCard = (props) => {
+  const onDelete = (id) => {
+    console.log(id);
+  };
+
   const classes = useStyles();
   return (
     <div>
@@ -37,8 +41,12 @@ const LinkCard = (props) => {
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button size="small" color="primary">
-            remove Link
+          <Button
+            size="small"
+            color="primary"
+            onClick={() => onDelete(props.id)}
+          >
+            Remove Link
           </Button>
         </CardActions>
       </Card>
