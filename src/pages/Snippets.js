@@ -1,7 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllSnippets } from "../store/snippets/actions";
-import { selectAllSnippets } from "../store/snippets/selector";
+import {
+  selectAllSnippets,
+  selectSnippetsWithFilter,
+} from "../store/snippets/selector";
 import CodeSnippetCard from "../components/CodeSnippetCard";
 import Grid from "@material-ui/core/Grid";
 import Toolbar from "../components/Toolbar";
@@ -14,7 +17,7 @@ const Snippets = () => {
   const snippets = useSelector(selectAllSnippets);
   const categories = useSelector(selectCategories);
 
-  // console.log("i am snippets", snippets);
+  const [category, setCategory] = useState([]);
 
   useEffect(() => {
     dispatch(getAllSnippets());
@@ -24,23 +27,40 @@ const Snippets = () => {
     dispatch(getCategories);
   }, [dispatch, categories.length]);
 
+  const selectCategory = (id) => {
+    let selectedCategory = id;
+    let newResults = [""];
+    if (category.includes(selectedCategory)) {
+      newResults = category.filter((cat) => cat !== selectedCategory);
+      setCategory(newResults);
+    } else setCategory([...category, selectedCategory]);
+  };
+
   return (
     <Grid container>
       <Grid item xs={2}>
-        <Toolbar />
+        <Toolbar selectCategory={selectCategory} />
       </Grid>
       <Grid item xs={10}>
-        {snippets.map((s) => {
-          return (
-            <CodeSnippetCard
-              key={s.id}
-              name={s.name}
-              content={s.content}
-              comment={s.comment}
-              id={s.id}
-            />
-          );
-        })}
+        {snippets
+          .filter((s) => {
+            if (category.length == 0) {
+              return true;
+            } else if (category.includes(s.id)) {
+              return true;
+            } else return false;
+          })
+          .map((s) => {
+            return (
+              <CodeSnippetCard
+                key={s.id}
+                name={s.name}
+                content={s.content}
+                comment={s.comment}
+                id={s.id}
+              />
+            );
+          })}
       </Grid>
       {categories.length === 0 ? (
         <div>
