@@ -8,7 +8,6 @@ import { Grid } from "@material-ui/core";
 import Toolbar from "../components/Toolbar";
 
 import AddLink from "../components/AddLink";
-import AddCategory from "../components/AddCategory";
 import { selectCategories } from "../store/categories/selectors";
 import { getCategories } from "../store/categories/actions";
 
