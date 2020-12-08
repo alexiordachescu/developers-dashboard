@@ -9,6 +9,13 @@ const getAllLinksSuccess = (links) => {
   };
 };
 
+const linkDeleteSuccess = (link) => {
+  return {
+    type: "LINK_DELETE_SUCCESS",
+    payload: link,
+  };
+}; 
+
 const addLinkSuccess = (link) => {
   return {
     type: "ADD_LINK_SUCCESS",
@@ -30,6 +37,29 @@ export const getAllLinks = () => {
       dispatch(getAllLinksSuccess(response.data));
     } catch (error) {
       console.log(error.message);
+    }
+  };
+};
+
+
+export const onLinkDelete = (id) => {
+  return async (dispatch, getState) => {
+    const token = selectToken(getState());
+    if (token === null) return;
+    try {
+      const response = await axios.delete(
+        `${apiUrl}/links/deleteLink`,
+        {
+          data: { id },
+        },
+        {
+          headers: { Authorization: `Bearer ${token} ` },
+        }
+      );
+      console.log(response.data);
+      dispatch(linkDeleteSuccess(response.data));
+    } catch (e) {
+      console.log(e);
     }
   };
 };
