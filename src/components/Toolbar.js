@@ -1,6 +1,5 @@
-import React, { useEffect } from "react";
-import { getCategories } from "../store/categories/actions";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 import { selectCategories } from "../store/categories/selectors";
 import Paper from "@material-ui/core/Paper";
 import AddCategory from "./AddCategory";
@@ -10,11 +9,6 @@ import Favorite from "@material-ui/icons/Favorite";
 import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
 
 export default function Toolbar({ selectCategory }) {
-  const dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(getCategories);
-  }, [dispatch]);
-
   const categories = useSelector(selectCategories);
 
   return (

@@ -1,5 +1,6 @@
 import Axios from "axios";
 import { apiUrl } from "../../config/constants";
+import { getCategories } from "../categories/actions";
 import { selectToken } from "./selectors";
 
 export const loginSuccess = (response) => ({
@@ -18,6 +19,7 @@ export const login = (email, password) => {
       const response = await Axios.post(`${apiUrl}/login`, { email, password });
       console.log(response.data);
       dispatch(loginSuccess(response.data));
+      dispatch(getCategories);
     } catch (e) {
       console.log(e);
     }
@@ -49,6 +51,7 @@ export const getUserWithStoredToken = async (dispatch, getState) => {
     const response = await Axios.get(`${apiUrl}/me`, {
       headers: { Authorization: `Bearer ${token}` },
     });
+    dispatch(getCategories);
 
     dispatch(tokenStillValid(response.data));
   } catch (error) {
