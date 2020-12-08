@@ -1,7 +1,6 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCategories } from "../store/categories/selectors";
-import { getCategories } from "../store/categories/actions";
 import { addSnippet } from "../store/snippets/actions";
 
 const initialForm = {
@@ -16,10 +15,6 @@ export default function AddSnippet() {
   const categories = useSelector(selectCategories);
   const [form, setForm] = useState(initialForm);
   const selectCategoryRef = useRef();
-
-  useEffect(() => {
-    dispatch(getCategories);
-  }, [dispatch]);
 
   function submitForm(e) {
     e.preventDefault();

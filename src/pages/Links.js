@@ -9,7 +9,6 @@ import Toolbar from "../components/Toolbar";
 
 import AddLink from "../components/AddLink";
 import { selectCategories } from "../store/categories/selectors";
-import { getCategories } from "../store/categories/actions";
 
 const Links = () => {
   const dispatch = useDispatch();
@@ -20,7 +19,6 @@ const Links = () => {
 
   useEffect(() => {
     dispatch(getAllLinks());
-    dispatch(getCategories);
   }, [dispatch]);
 
   const selectCategory = (id) => {
