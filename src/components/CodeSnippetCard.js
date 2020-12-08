@@ -8,7 +8,11 @@ import Typography from "@material-ui/core/Typography";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { a11yDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { useDispatch } from "react-redux";
-import { editCodeSnippet, deleteSnippet } from "../store/snippets/actions";
+import {
+  editCodeSnippet,
+  deleteSnippet,
+  editCommentSnippet,
+} from "../store/snippets/actions";
 import TextField from "@material-ui/core/TextField";
 
 const useStyles = makeStyles((theme) => ({
@@ -26,15 +30,22 @@ const useStyles = makeStyles((theme) => ({
 const CodeSnippetCard = (props) => {
   const dispatch = useDispatch();
   const [editMode, setEditMode] = useState(false);
+  const [editCommentMode, setEditCommentMode] = useState(false);
   const [editText, setEditText] = useState("");
+  const [editCommentText, setEditCommentText] = useState("");
 
   // console.log("i am edit text,", editText);
   // console.log("i am id,", props.id);
 
   function editSnippet() {
-    console.log("snippet id", props.id);
+    // console.log("snippet id", props.id);
     dispatch(editCodeSnippet(editText, props.id));
     setEditMode(false);
+  }
+  function editSnippetComment() {
+    console.log("snippet id", props.id);
+    dispatch(editCommentSnippet(editCommentText, props.id));
+    setEditCommentMode(false);
   }
   const onDelete = (id) => {
     // console.log("deleting snippet!", id);
@@ -92,15 +103,43 @@ const CodeSnippetCard = (props) => {
               </Button>
             </div>
           )}
-
-          <Typography gutterBottom variant="h5" component="h2">
-            {props.comment}
-          </Typography>
+          {!editCommentMode ? (
+            <Typography gutterBottom variant="h5" component="h2">
+              {props.comment}
+            </Typography>
+          ) : (
+            <div>
+              <Typography gutterBottom variant="h5" component="h2">
+                <TextField
+                  id="outlined-basic"
+                  label="Comment"
+                  variant="outlined"
+                  defaultValue={props.comment}
+                  onChange={(event) => setEditCommentText(event.target.value)}
+                />
+              </Typography>
+              <Button
+                size="small"
+                color="primary"
+                onClick={() => {
+                  editSnippetComment();
+                }}
+              >
+                save
+              </Button>
+            </div>
+          )}
         </CardContent>
         {/* </CardActionArea> */}
         <CardActions>
-          <Button size="small" color="primary">
-            Add comment
+          <Button
+            size="small"
+            color="primary"
+            onClick={() => {
+              setEditCommentMode(!editCommentMode);
+            }}
+          >
+            edit comment
           </Button>
 
           <Button
