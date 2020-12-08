@@ -40,7 +40,6 @@ export const getAllSnippets = () => {
   };
 };
 
-<<<<<<< HEAD
 export const editCodeSnippet = (content, id) => {
   console.log("i am content and id", content, id);
   return async (dispatch, getState) => {
@@ -53,7 +52,19 @@ export const editCodeSnippet = (content, id) => {
         `${apiUrl}/snippets`,
 
         { content, id },
-=======
+        {
+          headers: { Authorization: `Bearer ${token} ` },
+        }
+      );
+      console.log("i am response.data", response.data);
+      // token is still valid
+      dispatch(editSnippetSuccess(response.data));
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
+
 // add a snippet as a user,
 // form is an object that includes: category, name, content, comment (optional)
 export const addSnippet = (form) => {
@@ -73,18 +84,11 @@ export const addSnippet = (form) => {
           content: form.content,
           comment: form.comment,
         },
->>>>>>> ad5652dee1c34b53c06852c1c39b26ccb2af89d4
         {
           headers: { Authorization: `Bearer ${token} ` },
         }
       );
-<<<<<<< HEAD
-      console.log("i am response.data", response.data);
-      // token is still valid
-      dispatch(editSnippetSuccess(response.data));
-=======
       dispatch(addSnippetSuccess(response.data));
->>>>>>> ad5652dee1c34b53c06852c1c39b26ccb2af89d4
     } catch (error) {
       console.log(error.message);
     }
