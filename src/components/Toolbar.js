@@ -4,8 +4,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { selectCategories } from "../store/categories/selectors";
 import Paper from "@material-ui/core/Paper";
 import AddCategory from "./AddCategory";
+import Checkbox from "@material-ui/core/Checkbox";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Favorite from "@material-ui/icons/Favorite";
+import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
 
-export default function Toolbar() {
+export default function Toolbar({ selectCategory }) {
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getCategories);
@@ -20,7 +24,20 @@ export default function Toolbar() {
           Please select a category to show the corresponding results for it:
         </h2>
         {categories.map((category) => {
-          return <h3 key={category.id}>{category.name}</h3>;
+          return (
+            <FormControlLabel
+              control={
+                <Checkbox
+                  icon={<FavoriteBorder />}
+                  onClick={() => selectCategory(category.id)}
+                  key={category.id}
+                  color="primary"
+                  checkedIcon={<Favorite />}
+                />
+              }
+              label={category.name}
+            />
+          );
         })}{" "}
         <AddCategory />
       </Paper>
