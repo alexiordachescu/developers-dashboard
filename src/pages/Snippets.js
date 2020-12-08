@@ -7,7 +7,6 @@ import Grid from "@material-ui/core/Grid";
 import Toolbar from "../components/Toolbar";
 import { getCategories } from "../store/categories/actions";
 import { selectCategories } from "../store/categories/selectors";
-import AddCategory from "../components/AddCategory";
 import AddSnippet from "../components/AddSnippet";
 
 const Snippets = () => {
