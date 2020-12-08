@@ -43,7 +43,7 @@ const Links = () => {
             .filter((s) => {
               if (category.length === 0) {
                 return true;
-              } else if (category.includes(s.id)) {
+              } else if (category.includes(s.categoryId)) {
                 return true;
               } else return false;
             })
