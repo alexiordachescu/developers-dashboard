@@ -1,12 +1,11 @@
 import React from "react";
-import { useSelector } from "react-redux";
-// import { selectToken, selectUser } from "../../store/user/selectors";
+import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { logOut } from "../store/user/actions";
 import { selectToken, selectUser } from "../store/user/selectors";
-// import { logOut } from "../../store/user/actions";
 
 const Navbar = () => {
-  //   const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const token = useSelector(selectToken);
   const user = useSelector(selectUser);
 
@@ -24,22 +23,17 @@ const Navbar = () => {
         </Link>
 
         {!token ? (
-          <>
-            <Link to="/login">Login</Link>
-            <span> | </span>
-            <Link to="/signUp">Sign Up</Link>
-          </>
+          <Link to="/login">Login</Link>
         ) : (
           <>
             <span> | </span>
             <span>Hello, {user.name}</span>
             <button
-            //   onClick={() => {
-            //     history.push("/login");
-            //     dispatch(logOut());
-            //   }}
+              onClick={() => {
+                dispatch(logOut());
+              }}
             >
-              logout
+              Logout
             </button>
           </>
         )}

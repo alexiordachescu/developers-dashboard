@@ -18,6 +18,8 @@ export const login = (email, password) => {
   };
 };
 
+export const logOut = () => ({ type: "LOG_OUT" });
+
 export const signUp = (name, email, password) => {
   return async (dispatch, getState) => {
     try {
