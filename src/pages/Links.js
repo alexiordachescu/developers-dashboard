@@ -12,7 +12,6 @@ import AddCategory from "../components/AddCategory";
 import { selectCategories } from "../store/categories/selectors";
 import { getCategories } from "../store/categories/actions";
 
-
 const Links = () => {
   const dispatch = useDispatch();
   const links = useSelector(selectAllLinks);
@@ -22,12 +21,14 @@ const Links = () => {
 
   useEffect(() => {
     dispatch(getAllLinks());
+  }, [dispatch, links.length]);
+
+  useEffect(() => {
     dispatch(getCategories);
   }, [dispatch]);
 
   return (
     <div>
-
       {" "}
       <Grid container>
         <Grid item xs={2}>
@@ -46,22 +47,13 @@ const Links = () => {
           })}
         </Grid>
       </Grid>
-
-      {links.map((l) => {
-        return <LinkCard key={l.id} name={l.name} content={l.content} />;
-      })}
       {categories.length === 0 ? (
-        <div style={{ backgroundColor: "yellow" }}>
-          <AddCategory />
-          <p>
-            Or should this be something like "please add a category in the
-            toolbar on the left to be able to add links to it?"
-          </p>
+        <div>
+          <p>Please use toolbar on the left to add new links</p>
         </div>
       ) : (
         <AddLink />
       )}
-
     </div>
   );
 };

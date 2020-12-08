@@ -19,6 +19,9 @@ const Snippets = () => {
 
   useEffect(() => {
     dispatch(getAllSnippets());
+  }, [dispatch, snippets.length]);
+
+  useEffect(() => {
     dispatch(getCategories);
   }, [dispatch]);
 
@@ -41,12 +44,8 @@ const Snippets = () => {
         })}
       </Grid>
       {categories.length === 0 ? (
-        <div style={{ backgroundColor: "yellow" }}>
-          <AddCategory />
-          <p>
-            Or should this be something like "please add a category in the
-            toolbar on the left to be able to add snippets to it?"
-          </p>
+        <div>
+          <p>Please add a new category before adding a code snippet</p>
         </div>
       ) : (
         <AddSnippet />
