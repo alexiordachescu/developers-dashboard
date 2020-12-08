@@ -88,6 +88,7 @@ const CodeSnippetCard = (props) => {
                   id="outlined-basic"
                   label="Snippet"
                   variant="outlined"
+                  multiline
                   defaultValue={props.content}
                   onChange={(event) => setEditText(event.target.value)}
                 />
