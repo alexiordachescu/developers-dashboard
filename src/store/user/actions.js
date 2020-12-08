@@ -1,9 +1,15 @@
 import Axios from "axios";
 import { apiUrl } from "../../config/constants";
+import { selectToken } from "./selectors";
 
 export const loginSuccess = (response) => ({
   type: "LOGIN_SUCCESS",
   payload: response,
+});
+
+const tokenStillValid = (userWithoutToken) => ({
+  type: "TOKEN_STILL_VALID",
+  payload: userWithoutToken,
 });
 
 export const login = (email, password) => {
@@ -33,4 +39,24 @@ export const signUp = (name, email, password) => {
       console.log(e);
     }
   };
+};
+
+export const getUserWithStoredToken = async (dispatch, getState) => {
+  const token = selectToken(getState());
+  if (token === null) return;
+
+  try {
+    const response = await Axios.get(`${apiUrl}/me`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+
+    dispatch(tokenStillValid(response.data));
+  } catch (error) {
+    if (error.response?.data?.message) {
+      console.log(error.response.data.message);
+    } else {
+      console.log(error.message);
+    }
+    dispatch(logOut());
+  }
 };

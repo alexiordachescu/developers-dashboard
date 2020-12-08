@@ -1,22 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./App.css";
 
 import { Switch, Route } from "react-router-dom";
 
-// import { useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import Navbar from "./components/Navbar";
 import Snippets from "./pages/Snippets";
 
 import Links from "./pages/Links";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
+import { getUserWithStoredToken } from "./store/user/actions";
 
 function App() {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(getUserWithStoredToken());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(getUserWithStoredToken);
+  }, [dispatch]);
 
   return (
     <div className="App">
