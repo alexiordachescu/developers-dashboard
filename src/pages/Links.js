@@ -20,11 +20,8 @@ const Links = () => {
 
   useEffect(() => {
     dispatch(getAllLinks());
-  }, [dispatch, links.length]);
-
-  useEffect(() => {
     dispatch(getCategories);
-  }, [dispatch, categories.length]);
+  }, [dispatch]);
 
   const selectCategory = (id) => {
     let selectedCategory = id;

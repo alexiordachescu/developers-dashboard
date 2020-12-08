@@ -18,11 +18,8 @@ const Snippets = () => {
 
   useEffect(() => {
     dispatch(getAllSnippets());
-  }, [dispatch, snippets.length]);
-
-  useEffect(() => {
     dispatch(getCategories);
-  }, [dispatch, categories.length]);
+  }, [dispatch]);
 
   const selectCategory = (id) => {
     let selectedCategory = id;
