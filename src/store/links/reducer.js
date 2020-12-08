@@ -1,6 +1,6 @@
 const initialState = { all: [] };
 
-export default (state = initialState, action) => {
+const linksReducer = (state = initialState, action) => {
   switch (action.type) {
     case "ALL_LINKS_SUCCESS":
       return { ...state, all: action.payload };
@@ -11,7 +11,12 @@ export default (state = initialState, action) => {
       });
       return { ...state, all: newLinks };
 
+    case "ADD_LINK_SUCCESS":
+      return { ...state, all: [...state.all, action.payload] };
+
     default:
       return state;
   }
 };
+
+export default linksReducer;

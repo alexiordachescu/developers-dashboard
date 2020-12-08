@@ -2,16 +2,15 @@ import React, { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCategories } from "../store/categories/selectors";
 import { getCategories } from "../store/categories/actions";
-import { addSnippet } from "../store/snippets/actions";
+import { addLink } from "../store/links/actions";
 
 const initialForm = {
   category: "",
   name: "",
   content: "",
-  comment: "",
 };
 
-export default function AddSnippet() {
+export default function AddLink() {
   const dispatch = useDispatch();
   const categories = useSelector(selectCategories);
   const [form, setForm] = useState(initialForm);
@@ -23,7 +22,7 @@ export default function AddSnippet() {
 
   function submitForm(e) {
     e.preventDefault();
-    dispatch(addSnippet(form));
+    dispatch(addLink(form));
     setForm(initialForm);
     selectCategoryRef.current.value = "";
   }
@@ -33,10 +32,10 @@ export default function AddSnippet() {
   return (
     <form onSubmit={submitForm}>
       <div>
-        <label htmlFor="snippetCategory">Select a category</label>
+        <label htmlFor="linkCategory">Select a category</label>
         <select
-          id="snippetCategory"
-          name="snippetCategory"
+          id="linkCategory"
+          name="linkCategory"
           defaultValue="select"
           onChange={(e) => setForm({ ...form, category: e.target.value })}
           required
@@ -51,36 +50,26 @@ export default function AddSnippet() {
         </select>
       </div>
       <div>
-        <label htmlFor="snippetName">Give your snippet a name</label>
+        <label htmlFor="linkName">Give your link a name</label>
         <input
-          id="snippetName"
-          name="snippetName"
+          id="linkName"
+          name="linkName"
           value={form.name}
           onChange={(e) => setForm({ ...form, name: e.target.value })}
-          placeholder="Snippet name"
+          placeholder="Link name"
           required
         ></input>
       </div>
       <div>
-        <label htmlFor="snippetContent">Add a code snippet</label>
-        <textarea
-          id="snippetContent"
-          name="snippetContent"
+        <label htmlFor="linkContent">Add a link</label>
+        <input
+          id="linkContent"
+          name="linkContent"
           value={form.content}
           onChange={(e) => setForm({ ...form, content: e.target.value })}
-          placeholder="You can add a code snippet here"
+          placeholder="Add a link"
           required
-        ></textarea>
-      </div>
-      <div>
-        <label htmlFor="snippetComment">Add a comment?</label>
-        <textarea
-          id="snippetComment"
-          name="snippetComment"
-          value={form.comment}
-          onChange={(e) => setForm({ ...form, comment: e.target.value })}
-          placeholder="You can add a comment"
-        ></textarea>
+        ></input>
       </div>
       <div>
         <button type="submit">Add</button>
