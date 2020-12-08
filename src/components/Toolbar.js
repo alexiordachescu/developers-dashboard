@@ -26,11 +26,11 @@ export default function Toolbar({ selectCategory }) {
         {categories.map((category) => {
           return (
             <FormControlLabel
+              key={category.id}
               control={
                 <Checkbox
                   icon={<FavoriteBorder />}
                   onClick={() => selectCategory(category.id)}
-                  key={category.id}
                   color="primary"
                   checkedIcon={<Favorite />}
                 />

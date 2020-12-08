@@ -8,6 +8,7 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { useDispatch } from "react-redux";
 import { onLinkDelete } from "../store/links/actions";
+import ClipBoard from "./ClipBoard";
 
 const useStyles = makeStyles({
   root: {
@@ -29,21 +30,20 @@ const LinkCard = (props) => {
   return (
     <div>
       <Card className={classes.root}>
-        <CardActionArea>
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
-              {props.name}
-            </Typography>
-            <Typography
-              variant="body2"
-              color="textSecondary"
-              component="span"
-              className={classes.media}
-            >
-              <a href={props.content}>{props.content}</a>
-            </Typography>
-          </CardContent>
-        </CardActionArea>
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="h2">
+            {props.name}
+          </Typography>
+          <Typography
+            variant="body2"
+            color="textSecondary"
+            component="span"
+            className={classes.media}
+          >
+            <a href={props.content}>{props.content}</a>
+          </Typography>
+          <ClipBoard code={props.content} />
+        </CardContent>
         <CardActions>
           <Button
             size="small"
