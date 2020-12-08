@@ -19,6 +19,18 @@ export default (state = initialState, action) => {
     case "ADD_SNIPPET_SUCCESS":
       return { ...state, all: [...state.all, action.payload] };
 
+    case "SNIPPET_DELETE_SUCCESS":
+      // console.log("payload", action.payload);
+      // console.log("i am state before,", state.details);
+      const snippetId = action.payload;
+      const newSnippets = state.all.filter((s) => {
+        return s.id !== snippetId;
+      });
+
+      return {
+        ...state,
+        all: newSnippets,
+      };
     default:
       return state;
   }

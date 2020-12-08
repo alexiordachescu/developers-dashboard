@@ -22,6 +22,13 @@ const addSnippetSuccess = (snippet) => {
   };
 };
 
+const snippetDeleteSuccess = (snippetId) => {
+  return {
+    type: "SNIPPET_DELETE_SUCCESS",
+    payload: snippetId,
+  };
+};
+
 export const getAllSnippets = () => {
   return async (dispatch, getState) => {
     const token = selectToken(getState());
@@ -91,6 +98,30 @@ export const addSnippet = (form) => {
       dispatch(addSnippetSuccess(response.data));
     } catch (error) {
       console.log(error.message);
+    }
+  };
+};
+
+export const deleteSnippet = (id) => {
+  console.log("i am id from single snippet", id);
+  return async (dispatch, getState) => {
+    const token = selectToken(getState());
+    if (token === null) return;
+    try {
+      const response = await axios.delete(
+        `${apiUrl}/snippets`,
+        {
+          data: { id },
+        },
+        {
+          headers: { Authorization: `Bearer ${token} ` },
+        }
+      );
+
+      console.log("snippet deleted?", response.data);
+      dispatch(snippetDeleteSuccess(id));
+    } catch (e) {
+      console.log(e);
     }
   };
 };
