@@ -66,7 +66,7 @@ export const editCodeSnippet = (content, id) => {
 };
 
 // add a snippet as a user,
-// form is an object that includes: category, name, content, comment (optional)
+// form is an object that includes: category, name, content, comment
 export const addSnippet = (form) => {
   return async (dispatch, getState) => {
     const token = selectToken(getState());

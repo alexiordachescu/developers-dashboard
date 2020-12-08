@@ -44,7 +44,7 @@ export default function AddSnippet() {
             ref={selectCategoryRef}
           >
             <option value="">select</option>
-            {categories?.map((category) => (
+            {categories.map((category) => (
               <option key={category.id} value={category.name}>
                 {category.name}
               </option>
@@ -59,8 +59,7 @@ export default function AddSnippet() {
           name="snippetName"
           value={form.name}
           onChange={(e) => setForm({ ...form, name: e.target.value })}
-          type="text"
-          placeholder="Category name"
+          placeholder="Snippet name"
           required
         ></input>
       </div>
