@@ -11,7 +11,7 @@ const initialState = {
   rows: [],
 };
 
-export default (state = initialState, { type, payload }) => {
+const categoriesReducer = (state = initialState, { type, payload }) => {
   switch (type) {
     case LOADING_CATEGORIES:
       return { ...state, loading: true };
@@ -29,3 +29,5 @@ export default (state = initialState, { type, payload }) => {
       return state;
   }
 };
+
+export default categoriesReducer;

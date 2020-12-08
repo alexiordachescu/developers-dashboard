@@ -1,6 +1,6 @@
 const initialState = { all: [] };
 
-export default (state = initialState, action) => {
+const snippetsReducer = (state = initialState, action) => {
   switch (action.type) {
     case "ALL_SNIPPETS_SUCCESS":
       return { ...state, all: action.payload };
@@ -23,3 +23,5 @@ export default (state = initialState, action) => {
       return state;
   }
 };
+
+export default snippetsReducer;
