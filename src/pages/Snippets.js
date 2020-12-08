@@ -18,7 +18,7 @@ const Snippets = () => {
   const snippets = useSelector(selectAllSnippets);
   const categories = useSelector(selectCategories);
 
-  const [category, setCategory] = useState(null);
+  const [category, setCategory] = useState([]);
 
   useEffect(() => {
     dispatch(getAllSnippets());
@@ -29,9 +29,12 @@ const Snippets = () => {
   }, [dispatch, categories.length]);
 
   const selectCategory = (id) => {
-    if (id == category) {
-      setCategory(null);
-    } else setCategory(id);
+    let selectedCategory = id;
+    let newResults = [""];
+    if (category.includes(selectedCategory)) {
+      newResults = category.filter((cat) => cat !== selectedCategory);
+      setCategory(newResults);
+    } else setCategory([...category, selectedCategory]);
   };
 
   return (
@@ -42,9 +45,11 @@ const Snippets = () => {
       <Grid item xs={10}>
         {snippets
           .filter((s) => {
-            if (!category) {
+            if (category.length == 0) {
               return true;
-            } else return s.categoryId === category;
+            } else if (category.includes(s.id)) {
+              return true;
+            } else return false;
           })
           .map((s) => {
             return (
