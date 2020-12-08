@@ -9,7 +9,7 @@ import Typography from "@material-ui/core/Typography";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { a11yDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 import { useDispatch } from "react-redux";
-import { editCodeSnippet } from "../store/snippets/actions";
+import { editCodeSnippet, deleteSnippet } from "../store/snippets/actions";
 import TextField from "@material-ui/core/TextField";
 
 const useStyles = makeStyles((theme) => ({
@@ -37,6 +37,11 @@ const CodeSnippetCard = (props) => {
     dispatch(editCodeSnippet(editText, props.id));
     setEditMode(false);
   }
+  const onDelete = (id) => {
+    // console.log("deleting snippet!", id);
+
+    dispatch(deleteSnippet(id));
+  };
 
   const classes = useStyles();
   return (
@@ -98,7 +103,14 @@ const CodeSnippetCard = (props) => {
           <Button size="small" color="primary">
             Add comment
           </Button>
-          <Button size="small" color="primary">
+
+          <Button
+            size="small"
+            color="primary"
+            onClick={() => {
+              onDelete(props.id);
+            }}
+          >
             remove snippet
           </Button>
           <Button
