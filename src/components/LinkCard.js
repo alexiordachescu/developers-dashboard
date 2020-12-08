@@ -6,6 +6,8 @@ import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
+import { useDispatch } from "react-redux";
+import { onLinkDelete } from "../store/links/actions";
 
 const useStyles = makeStyles({
   root: {
@@ -17,6 +19,12 @@ const useStyles = makeStyles({
 });
 
 const LinkCard = (props) => {
+  const dispatch = useDispatch();
+
+  const onDelete = (id) => {
+    dispatch(onLinkDelete(id));
+  };
+
   const classes = useStyles();
   return (
     <div>
@@ -37,8 +45,12 @@ const LinkCard = (props) => {
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button size="small" color="primary">
-            remove Link
+          <Button
+            size="small"
+            color="primary"
+            onClick={() => onDelete(props.id)}
+          >
+            Remove Link
           </Button>
         </CardActions>
       </Card>

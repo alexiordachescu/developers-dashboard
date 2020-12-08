@@ -3,10 +3,15 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllLinks } from "../store/links/actions";
 import { selectAllLinks } from "../store/links/selector";
 import LinkCard from "../components/LinkCard";
+
+import { Grid } from "@material-ui/core";
+import Toolbar from "../components/Toolbar";
+
 import AddLink from "../components/AddLink";
 import AddCategory from "../components/AddCategory";
 import { selectCategories } from "../store/categories/selectors";
 import { getCategories } from "../store/categories/actions";
+
 
 const Links = () => {
   const dispatch = useDispatch();
@@ -22,6 +27,26 @@ const Links = () => {
 
   return (
     <div>
+
+      {" "}
+      <Grid container>
+        <Grid item xs={2}>
+          <Toolbar />
+        </Grid>
+        <Grid item xs={10}>
+          {links.map((l) => {
+            return (
+              <LinkCard
+                key={l.id}
+                id={l.id}
+                name={l.name}
+                content={l.content}
+              />
+            );
+          })}
+        </Grid>
+      </Grid>
+
       {links.map((l) => {
         return <LinkCard key={l.id} name={l.name} content={l.content} />;
       })}
@@ -36,6 +61,7 @@ const Links = () => {
       ) : (
         <AddLink />
       )}
+
     </div>
   );
 };
