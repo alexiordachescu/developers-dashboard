@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllSnippets } from "../store/snippets/actions";
-import {
-  selectAllSnippets,
-  selectSnippetsWithFilter,
-} from "../store/snippets/selector";
+import { selectAllSnippets } from "../store/snippets/selector";
 import CodeSnippetCard from "../components/CodeSnippetCard";
 import Grid from "@material-ui/core/Grid";
 import Toolbar from "../components/Toolbar";
@@ -44,7 +41,7 @@ const Snippets = () => {
       <Grid item xs={10}>
         {snippets
           .filter((s) => {
-            if (category.length == 0) {
+            if (category.length === 0) {
               return true;
             } else if (category.includes(s.id)) {
               return true;

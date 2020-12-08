@@ -46,7 +46,7 @@ const Links = () => {
         <Grid item xs={10}>
           {links
             .filter((s) => {
-              if (category.length == 0) {
+              if (category.length === 0) {
                 return true;
               } else if (category.includes(s.id)) {
                 return true;
