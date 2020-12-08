@@ -18,10 +18,8 @@ export default function AddSnippet() {
   const selectCategoryRef = useRef();
 
   useEffect(() => {
-    if (categories.length === 0) {
-      dispatch(getCategories);
-    }
-  }, [dispatch, categories]);
+    dispatch(getCategories);
+  }, [dispatch]);
 
   function submitForm(e) {
     e.preventDefault();
@@ -30,28 +28,28 @@ export default function AddSnippet() {
     selectCategoryRef.current.value = "";
   }
 
+  if (categories.length === 0) return null;
+
   return (
     <form onSubmit={submitForm}>
-      {categories.length !== 0 && (
-        <div>
-          <label htmlFor="snippetCategory">Select a category</label>
-          <select
-            id="snippetCategory"
-            name="snippetCategory"
-            defaultValue="select"
-            onChange={(e) => setForm({ ...form, category: e.target.value })}
-            required
-            ref={selectCategoryRef}
-          >
-            <option value="">select</option>
-            {categories.map((category) => (
-              <option key={category.id} value={category.name}>
-                {category.name}
-              </option>
-            ))}
-          </select>
-        </div>
-      )}
+      <div>
+        <label htmlFor="snippetCategory">Select a category</label>
+        <select
+          id="snippetCategory"
+          name="snippetCategory"
+          defaultValue="select"
+          onChange={(e) => setForm({ ...form, category: e.target.value })}
+          required
+          ref={selectCategoryRef}
+        >
+          <option value="">select</option>
+          {categories.map((category) => (
+            <option key={category.id} value={category.name}>
+              {category.name}
+            </option>
+          ))}
+        </select>
+      </div>
       <div>
         <label htmlFor="snippetName">Give your snippet a name</label>
         <input
