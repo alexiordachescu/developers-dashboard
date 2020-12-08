@@ -29,6 +29,7 @@ const Snippets = () => {
               name={s.name}
               content={s.content}
               comment={s.comment}
+              id={s.id}
             />
           );
         })}
