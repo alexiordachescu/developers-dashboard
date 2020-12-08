@@ -15,6 +15,17 @@ const snippetsReducer = (state = initialState, action) => {
           }
         }),
       };
+    case "EDIT_SNIPPET_COMMENT_SUCCESS":
+      return {
+        ...state,
+        all: state.all.map((s) => {
+          if (s.id === action.payload.snippet.id) {
+            return action.payload.snippet;
+          } else {
+            return s;
+          }
+        }),
+      };
 
     case "ADD_SNIPPET_SUCCESS":
       return { ...state, all: [...state.all, action.payload] };

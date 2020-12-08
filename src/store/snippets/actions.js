@@ -14,6 +14,12 @@ const editSnippetSuccess = (snippet) => {
     payload: snippet,
   };
 };
+const editSnippetCommentSuccess = (comment) => {
+  return {
+    type: "EDIT_SNIPPET_COMMENT_SUCCESS",
+    payload: comment,
+  };
+};
 
 const addSnippetSuccess = (snippet) => {
   return {
@@ -66,6 +72,31 @@ export const editCodeSnippet = (content, id) => {
       console.log("i am response.data", response.data);
       // token is still valid
       dispatch(editSnippetSuccess(response.data));
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+};
+export const editCommentSnippet = (comment, id) => {
+  // console.log("i am content and id", comment, id);
+  return async (dispatch, getState) => {
+    const token = selectToken(getState());
+    if (token === null) return;
+
+    try {
+      // console.log("i got here");
+
+      const response = await axios.patch(
+        `${apiUrl}/snippets/comments`,
+
+        { comment, id },
+        {
+          headers: { Authorization: `Bearer ${token} ` },
+        }
+      );
+      console.log("i am response.data", response.data);
+      // token is still valid
+      dispatch(editSnippetCommentSuccess(response.data));
     } catch (error) {
       console.log(error.message);
     }
