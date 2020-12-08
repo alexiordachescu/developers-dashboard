@@ -20,7 +20,7 @@ export default function Toolbar() {
           Please select a category to show the corresponding results for it:
         </h2>
         {categories.map((category) => {
-          return <h3>{category.name}</h3>;
+          return <h3 key={category.id}>{category.name}</h3>;
         })}{" "}
         <AddCategory />
       </Paper>

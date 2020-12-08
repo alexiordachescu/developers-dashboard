@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
-import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
@@ -29,8 +28,8 @@ const CodeSnippetCard = (props) => {
   const [editMode, setEditMode] = useState(false);
   const [editText, setEditText] = useState("");
 
-  console.log("i am edit text,", editText);
-  console.log("i am id,", props.id);
+  // console.log("i am edit text,", editText);
+  // console.log("i am id,", props.id);
 
   function editSnippet() {
     console.log("snippet id", props.id);

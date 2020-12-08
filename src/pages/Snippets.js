@@ -10,7 +10,7 @@ const Snippets = () => {
   const dispatch = useDispatch();
   const snippets = useSelector(selectAllSnippets);
 
-  console.log("i am snippets", snippets);
+  // console.log("i am snippets", snippets);
 
   useEffect(() => {
     dispatch(getAllSnippets());
