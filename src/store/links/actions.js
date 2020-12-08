@@ -26,3 +26,32 @@ export const getAllLinks = () => {
     }
   };
 };
+
+export const onLinkDelete = (id) => {
+  return async (dispatch, getState) => {
+    const token = selectToken(getState());
+    if (token === null) return;
+    try {
+      const response = await axios.delete(
+        `${apiUrl}/links/deleteLink`,
+        {
+          data: { id },
+        },
+        {
+          headers: { Authorization: `Bearer ${token} ` },
+        }
+      );
+      console.log(response.data);
+      dispatch(linkDeleteSuccess(response.data));
+    } catch (e) {
+      console.log(e);
+    }
+  };
+};
+
+const linkDeleteSuccess = (link) => {
+  return {
+    type: "LINK_DELETE_SUCCESS",
+    payload: link,
+  };
+};
