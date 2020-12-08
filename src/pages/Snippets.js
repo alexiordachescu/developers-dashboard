@@ -23,7 +23,7 @@ const Snippets = () => {
 
   useEffect(() => {
     dispatch(getCategories);
-  }, [dispatch]);
+  }, [dispatch, categories.length]);
 
   return (
     <Grid container>
