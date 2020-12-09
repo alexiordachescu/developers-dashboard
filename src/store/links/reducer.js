@@ -16,6 +16,7 @@ const linksReducer = (state = initialState, action) => {
 
     case "ALL_LINKS_SUCCESS":
       return { ...state, all: action.payload };
+
     case "LINK_DELETE_SUCCESS":
       const linkId = action.payload.id;
       const newLinks = state.all.filter((l) => {

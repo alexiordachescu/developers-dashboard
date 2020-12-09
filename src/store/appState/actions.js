@@ -8,7 +8,7 @@ export const appLoading = () => ({ type: APP_LOADING });
 export const appDoneLoading = () => ({ type: APP_DONE_LOADING });
 export const clearAppMessage = () => ({ type: CLEAR_MESSAGE });
 export const setAppMessage = (type, text) => ({
-  // type should be "success" | "error"
+  // type in payload should be "success" | "error"
   type: SET_MESSAGE,
   payload: { type, text },
 });

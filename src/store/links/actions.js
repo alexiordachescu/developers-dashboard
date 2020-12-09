@@ -10,7 +10,7 @@ export const setLinksMessage = (text) => ({
 });
 export const clearLinksMessage = () => ({ type: "CLEAR_LINKS_MESSAGE" });
 
-const getAllLinksSuccess = (links) => {
+export const getAllLinksSuccess = (links) => {
   return {
     type: "ALL_LINKS_SUCCESS",
     payload: links,
@@ -28,32 +28,6 @@ const addLinkSuccess = (link) => {
   return {
     type: "ADD_LINK_SUCCESS",
     payload: link,
-  };
-};
-
-export const getAllLinks = () => {
-  return async (dispatch, getState) => {
-    const token = selectToken(getState());
-    if (token === null) return;
-    dispatch(linksLoading());
-    try {
-      const response = await axios.get(`${apiUrl}/links`, {
-        headers: { Authorization: `Bearer ${token} ` },
-      });
-      //   console.log("i am response.data", response.data);
-      // token is still valid
-      dispatch(getAllLinksSuccess(response.data));
-      dispatch(linksDoneLoading());
-    } catch (error) {
-      if (error.response?.data?.message) {
-        console.log(error.response.data.message);
-        dispatch(setLinksMessage(error.response.data.message));
-      } else {
-        console.log(error.message);
-        dispatch(setLinksMessage(error.message));
-      }
-      dispatch(linksDoneLoading());
-    }
   };
 };
 

@@ -1,14 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllLinks } from "../store/links/actions";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { selectAllLinks } from "../store/links/selectors";
 import LinkCard from "../components/LinkCard";
 
-import { Grid, Paper } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import Toolbar from "../components/Toolbar";
 
 import AddLink from "../components/AddLink";
-import { selectCategories } from "../store/categories/selectors";
+import { selectAllCategories } from "../store/categories/selectors";
 import { makeStyles } from "@material-ui/core/styles";
 import StickyBox from "react-sticky-box/dist/esnext";
 
@@ -19,16 +18,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Links = () => {
-  const dispatch = useDispatch();
   const classes = useStyles();
   const links = useSelector(selectAllLinks);
-  const categories = useSelector(selectCategories);
+  const categories = useSelector(selectAllCategories);
 
   const [category, setCategory] = useState([]);
-
-  useEffect(() => {
-    dispatch(getAllLinks());
-  }, [dispatch]);
 
   const selectCategory = (id) => {
     let selectedCategory = id;
@@ -38,11 +32,10 @@ const Links = () => {
       setCategory(newResults);
     } else setCategory([...category, selectedCategory]);
   };
-  console.log(category);
 
   return (
     <Grid container>
-      <Grid item xs={2}>
+      <Grid item lg={2}>
         <StickyBox offsetTop={90} offsetBottom={20}>
           <Toolbar selectCategory={selectCategory} />
         </StickyBox>
@@ -50,7 +43,7 @@ const Links = () => {
       <Grid
         item
         container
-        xs={7}
+        lg={7}
         direction="row"
         justify="center"
         alignItems="center"
@@ -74,7 +67,7 @@ const Links = () => {
           })}
       </Grid>
 
-      <Grid item xs={3}>
+      <Grid item xs={12} lg={3}>
         {categories.length === 0 ? (
           <div>
             <p>Please use toolbar on the left to add new links</p>

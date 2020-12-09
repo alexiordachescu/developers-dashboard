@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { getAllSnippets } from "../store/snippets/actions";
+import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { selectAllSnippets } from "../store/snippets/selectors";
 import CodeSnippetCard from "../components/CodeSnippetCard";
 import Grid from "@material-ui/core/Grid";
 import Toolbar from "../components/Toolbar";
-import { selectCategories } from "../store/categories/selectors";
+import { selectAllCategories } from "../store/categories/selectors";
 import AddSnippet from "../components/AddSnippet";
 import { makeStyles } from "@material-ui/core/styles";
 import StickyBox from "react-sticky-box/dist/esnext";
@@ -26,16 +25,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Snippets = () => {
-  const dispatch = useDispatch();
   const classes = useStyles();
   const snippets = useSelector(selectAllSnippets);
-  const categories = useSelector(selectCategories);
+  const categories = useSelector(selectAllCategories);
 
   const [category, setCategory] = useState([]);
-
-  useEffect(() => {
-    dispatch(getAllSnippets());
-  }, [dispatch]);
 
   const selectCategory = (id) => {
     let selectedCategory = id;
@@ -48,7 +42,7 @@ const Snippets = () => {
 
   return (
     <Grid container>
-      <Grid item xs={2}>
+      <Grid item md={2} lg={2}>
         <StickyBox offsetTop={90} offsetBottom={20}>
           <Toolbar selectCategory={selectCategory} />
         </StickyBox>
@@ -56,7 +50,7 @@ const Snippets = () => {
       <Grid
         item
         container
-        xs={6}
+        lg={6}
         direction="column"
         justify="space-between"
         alignItems="stretch"
@@ -84,7 +78,7 @@ const Snippets = () => {
             );
           })}
       </Grid>
-      <Grid item xs={4}>
+      <Grid item xs={12} md={12} lg={4}>
         {categories.length === 0 ? (
           <div>
             <p>Please add a new category before adding a code snippet</p>
