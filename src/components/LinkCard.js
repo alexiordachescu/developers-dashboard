@@ -13,7 +13,7 @@ import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 
 const useStyles = makeStyles({
   root: {
-    width: "25rem",
+    width: "20rem",
     height: "10rem",
     backgroundColor: "#333333",
   },
@@ -39,7 +39,7 @@ const LinkCard = (props) => {
     <div>
       <Card className={classes.root}>
         <CardContent>
-          <Grid item container xs={12} justify="space-between">
+          <Grid item container justify="space-between">
             <Typography
               gutterBottom
               variant="h5"

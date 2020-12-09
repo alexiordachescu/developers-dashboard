@@ -65,12 +65,12 @@ export default function Search() {
         justify="center"
         alignItems="center"
       >
-        <Grid item xs={12}>
+        <Grid item>
           <Typography variant="h3" className={classes.textColor}>
             Search for some keywords in your archive
           </Typography>
         </Grid>{" "}
-        <Grid item xs={12}>
+        <Grid item>
           <Paper elevation={2} className={classes.root}>
             <InputBase
               className={classes.input}

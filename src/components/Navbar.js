@@ -35,8 +35,8 @@ const Navbar = () => {
     <nav>
       <AppBar position="static" className={classes.appBar}>
         <Toolbar>
-          <Grid container justify="space-between" alignItems="center">
-            <Grid item xs={3}>
+          <Grid container justify="space-around" alignItems="center">
+            <Grid item>
               <Link style={{ color: "white", textDecoration: "none" }} to="/">
                 {user.name ? (
                   <Typography variant="h6">
@@ -49,7 +49,7 @@ const Navbar = () => {
                 )}
               </Link>
             </Grid>
-            <Grid item xs={3}>
+            <Grid item>
               <Link
                 style={{ color: "white", textDecoration: "none" }}
                 to="/developersSnippets"
@@ -57,7 +57,7 @@ const Navbar = () => {
                 <Typography variant="h6">Developers Snippets</Typography>
               </Link>
             </Grid>
-            <Grid item xs={3}>
+            <Grid item>
               <Link
                 style={{ color: "white", textDecoration: "none" }}
                 to="/developersLinks"
@@ -65,37 +65,36 @@ const Navbar = () => {
                 <Typography variant="h6">Developers Links</Typography>
               </Link>
             </Grid>
-          </Grid>
-          <Grid item xs={3}>
-            <Link
-              style={{ color: "white", textDecoration: "none" }}
-              to="/search"
-            >
-              <SearchIcon />
-            </Link>
-          </Grid>
 
-          {!token ? (
-            <Link
-              style={{ color: "white", textDecoration: "none" }}
-              to="/login"
-            >
-              <Typography variant="h6">Login</Typography>
-            </Link>
-          ) : (
-            <>
-              {" "}
-              <Button
-                color="inherit"
-                onClick={() => {
-                  history.push("/login");
-                  dispatch(logOut());
-                }}
+            <Grid item>
+              <Link
+                style={{ color: "white", textDecoration: "none" }}
+                to="/search"
               >
-                Logout
-              </Button>
-            </>
-          )}
+                <SearchIcon />
+              </Link>
+            </Grid>
+            <Grid item>
+              {!token ? (
+                <Link
+                  style={{ color: "white", textDecoration: "none" }}
+                  to="/login"
+                >
+                  <Typography variant="h6">Login</Typography>
+                </Link>
+              ) : (
+                <Button
+                  color="inherit"
+                  onClick={() => {
+                    history.push("/login");
+                    dispatch(logOut());
+                  }}
+                >
+                  Logout
+                </Button>
+              )}
+            </Grid>
+          </Grid>
         </Toolbar>
       </AppBar>
     </nav>
