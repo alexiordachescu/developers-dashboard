@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { selectCategories } from "../store/categories/selectors";
+import { selectAllCategories } from "../store/categories/selectors";
 import Paper from "@material-ui/core/Paper";
 import AddCategory from "./AddCategory";
 import Checkbox from "@material-ui/core/Checkbox";
@@ -16,12 +16,12 @@ const useStyles = makeStyles((theme) => ({
     color: "#FFFFFF",
   },
   toolbarTitle: {
-    color: "#5e35b1",
+    color: "#58A6FF",
   },
 }));
 
 export default function Toolbar({ selectCategory }) {
-  const categories = useSelector(selectCategories);
+  const categories = useSelector(selectAllCategories);
   const classes = useStyles();
 
   return (

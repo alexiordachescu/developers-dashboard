@@ -11,7 +11,7 @@ export default function Signup() {
 
   useEffect(() => {
     if (token !== null) {
-      history.push("/");
+      history.push("/developerSnippets");
     }
   }, [token, history]);
 

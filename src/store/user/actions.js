@@ -1,7 +1,8 @@
 import Axios from "axios";
 import { apiUrl } from "../../config/constants";
-import { getCategories } from "../categories/actions";
-import { getAllSnippets } from "../snippets/actions";
+import { getAllCategoriesSuccess } from "../categories/actions";
+import { getAllLinksSuccess } from "../links/actions";
+import { getAllSnippetsSuccess } from "../snippets/actions";
 import { selectToken } from "./selectors";
 import {
   appLoading,
@@ -30,9 +31,8 @@ export const signUp = (name, email, password) => {
         password,
       });
       dispatch(loginSuccess(response.data));
-
-      dispatch(getCategories);
-      dispatch(getAllSnippets());
+      dispatch(showMessageWithTimeout("success", "account created"));
+      dispatch(appDoneLoading());
     } catch (error) {
       if (error.response?.data?.message) {
         console.log(error.response.data.message);
@@ -46,15 +46,16 @@ export const signUp = (name, email, password) => {
   };
 };
 
+// get user after manual login, including their categories, snippets and links
 export const login = (email, password) => {
   return async (dispatch, getState) => {
     dispatch(appLoading());
     try {
       const response = await Axios.post(`${apiUrl}/login`, { email, password });
-      console.log(response.data);
-      dispatch(loginSuccess(response.data));
-      dispatch(getCategories);
-      dispatch(getAllSnippets());
+      dispatch(loginSuccess(response.data.user));
+      dispatch(getAllCategoriesSuccess(response.data.categories));
+      dispatch(getAllLinksSuccess(response.data.links));
+      dispatch(getAllSnippetsSuccess(response.data.snippets));
       dispatch(showMessageWithTimeout("success", "welcome back!"));
       dispatch(appDoneLoading());
     } catch (error) {
@@ -72,6 +73,7 @@ export const login = (email, password) => {
 
 export const logOut = () => ({ type: "LOG_OUT" });
 
+// get user with token, including their categories, snippets and links
 export const getUserWithStoredToken = async (dispatch, getState) => {
   const token = selectToken(getState());
   if (token === null) return;
@@ -81,12 +83,10 @@ export const getUserWithStoredToken = async (dispatch, getState) => {
     const response = await Axios.get(`${apiUrl}/me`, {
       headers: { Authorization: `Bearer ${token}` },
     });
-
-    dispatch(getCategories);
-    dispatch(getAllSnippets());
-
-    dispatch(tokenStillValid(response.data));
-    dispatch(getCategories);
+    dispatch(tokenStillValid(response.data.user));
+    dispatch(getAllCategoriesSuccess(response.data.categories));
+    dispatch(getAllLinksSuccess(response.data.links));
+    dispatch(getAllSnippetsSuccess(response.data.snippets));
     dispatch(appDoneLoading());
   } catch (error) {
     if (error.response?.data?.message) {

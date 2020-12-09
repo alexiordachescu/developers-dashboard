@@ -21,7 +21,7 @@ const useStyles = makeStyles({
     textDecoration: "none",
   },
   linkName: {
-    color: "#5e35b1",
+    color: "#58A6FF",
   },
 });
 

@@ -16,6 +16,7 @@ const snippetsReducer = (state = initialState, action) => {
 
     case "ALL_SNIPPETS_SUCCESS":
       return { ...state, all: action.payload };
+
     case "EDIT_SNIPPET_SUCCESS":
       return {
         ...state,

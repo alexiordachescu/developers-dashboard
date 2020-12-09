@@ -17,7 +17,7 @@ const categoriesReducer = (state = initialState, action) => {
     case "ADD_CATEGORY":
       return { ...state, all: [...state.all, action.payload] };
 
-    case "SET_FETCHED_CATEGORIES":
+    case "ALL_CATEGORIES_SUCCESS":
       return { ...state, all: action.payload };
 
     default:
