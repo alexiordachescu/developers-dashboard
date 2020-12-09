@@ -12,6 +12,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import { getUserWithStoredToken } from "./store/user/actions";
 import MessageBox from "./components/MessageBox";
+import Search from "./pages/Search";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,6 +26,7 @@ function App() {
       <Navbar />
       <MessageBox />
       <Switch>
+        <Route path="/search" component={Search} />
         <Route exact path="/developersLinks" component={Links} />
         <Route exact path="/developersSnippets" component={Snippets} />
         <Route path="/login" component={Login} />
