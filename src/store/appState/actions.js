@@ -6,8 +6,8 @@ export const CLEAR_MESSAGE = "CLEAR_MESSAGE";
 
 export const appLoading = () => ({ type: APP_LOADING });
 export const appDoneLoading = () => ({ type: APP_DONE_LOADING });
-export const clearMessage = () => ({ type: CLEAR_MESSAGE });
-export const setMessage = (type, text) => ({
+export const clearAppMessage = () => ({ type: CLEAR_MESSAGE });
+export const setAppMessage = (type, text) => ({
   // type should be "success" | "error"
   type: SET_MESSAGE,
   payload: { type, text },
@@ -15,10 +15,10 @@ export const setMessage = (type, text) => ({
 
 export const showMessageWithTimeout = (type, text, timeOutMilliSeconds) => {
   return (dispatch) => {
-    dispatch(setMessage(type, text));
+    dispatch(setAppMessage(type, text));
 
     const timeout = timeOutMilliSeconds || DEFAULT_MESSAGE_TIMEOUT;
 
-    setTimeout(() => dispatch(clearMessage()), timeout);
+    setTimeout(() => dispatch(clearAppMessage()), timeout);
   };
 };

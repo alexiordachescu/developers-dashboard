@@ -11,6 +11,7 @@ import Links from "./pages/Links";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import { getUserWithStoredToken } from "./store/user/actions";
+import MessageBox from "./components/MessageBox";
 
 function App() {
   const dispatch = useDispatch();
@@ -22,6 +23,7 @@ function App() {
   return (
     <div className="App">
       <Navbar />
+      <MessageBox />
       <Switch>
         <Route exact path="/developersLinks" component={Links} />
         <Route exact path="/developersSnippets" component={Snippets} />
