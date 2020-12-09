@@ -96,7 +96,7 @@ export const addLink = (form) => {
     if (token === null) return;
     dispatch(linksLoading());
     try {
-      const categoryId = getState().categories.rows.find(
+      const categoryId = getState().categories.all.find(
         (category) => category.name === form.category
       ).id;
       if (!categoryId) return;
