@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     color: "#FFFFFF",
   },
   toolbarTitle: {
-    color: "#5e35b1",
+    color: "#58A6FF",
   },
 }));
 
