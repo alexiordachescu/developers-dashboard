@@ -20,9 +20,9 @@ export const addNewCategory = (category) => {
     payload: category,
   };
 };
-export const setFetchedCategories = (categories) => {
+export const getAllCategoriesSuccess = (categories) => {
   return {
-    type: "SET_FETCHED_CATEGORIES",
+    type: "ALL_CATEGORIES_SUCCESS",
     payload: categories,
   };
 };
@@ -41,29 +41,6 @@ export const addCategory = (category) => async (dispatch, getState) => {
       }
     );
     dispatch(addNewCategory(response.data));
-    dispatch(categoriesDoneLoading());
-  } catch (error) {
-    if (error.response?.data?.message) {
-      console.log(error.response.data.message);
-      dispatch(setCategoriesMessage(error.response.data.message));
-    } else {
-      console.log(error.message);
-      dispatch(setCategoriesMessage(error.message));
-    }
-    dispatch(categoriesDoneLoading());
-  }
-};
-
-// select all categories with user token
-export const getCategories = async (dispatch, getState) => {
-  const token = selectToken(getState());
-  if (token === null) return;
-  try {
-    dispatch(categoriesLoading());
-    const response = await axios.get(`${apiUrl}/categories`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    dispatch(setFetchedCategories(response.data));
     dispatch(categoriesDoneLoading());
   } catch (error) {
     if (error.response?.data?.message) {
