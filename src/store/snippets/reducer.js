@@ -1,7 +1,19 @@
-const initialState = { all: [] };
+const initialState = { loading: false, message: null, all: [] };
 
 const snippetsReducer = (state = initialState, action) => {
   switch (action.type) {
+    case "SNIPPETS_LOADING":
+      return { ...state, loading: true };
+
+    case "SNIPPETS_DONE_LOADING":
+      return { ...state, loading: false };
+
+    case "SET_SNIPPETS_MESSAGE":
+      return { ...state, message: action.payload };
+
+    case "CLEAR_SNIPPETS_MESSAGE":
+      return { ...state, message: null };
+
     case "ALL_SNIPPETS_SUCCESS":
       return { ...state, all: action.payload };
     case "EDIT_SNIPPET_SUCCESS":
