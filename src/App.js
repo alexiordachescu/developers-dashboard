@@ -17,6 +17,7 @@ import StickyBox from "react-sticky-box/dist/esnext";
 import MessageBox from "./components/MessageBox";
 import Search from "./pages/Search";
 
+import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,25 +26,30 @@ function App() {
     dispatch(getUserWithStoredToken);
   }, [dispatch]);
 
+  const theme = createMuiTheme({
+    typography: {
+      fontFamily: ["Chilanka"].join(","),
+    },
+  });
+
   return (
-    <div className="App">
+    <ThemeProvider theme={theme}>
+      <div className="App">
+        <StickyBox offsetTop={0} offsetBottom={20}>
+          <Navbar />
+        </StickyBox>
 
-      <StickyBox offsetTop={0} offsetBottom={20}>
-        <Navbar />
-      </StickyBox>
+        <MessageBox />
 
-
-      
-      <MessageBox />
-
-      <Switch>
-        <Route path="/search" component={Search} />
-        <Route exact path="/developersLinks" component={Links} />
-        <Route exact path="/developersSnippets" component={Snippets} />
-        <Route path="/login" component={Login} />
-        <Route path="/signUp" component={Signup} />
-      </Switch>
-    </div>
+        <Switch>
+          <Route path="/search" component={Search} />
+          <Route exact path="/developersLinks" component={Links} />
+          <Route exact path="/developersSnippets" component={Snippets} />
+          <Route path="/login" component={Login} />
+          <Route path="/signUp" component={Signup} />
+        </Switch>
+      </div>{" "}
+    </ThemeProvider>
   );
 }
 

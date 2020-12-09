@@ -42,7 +42,7 @@ const Snippets = () => {
 
   return (
     <Grid container>
-      <Grid item xs={2}>
+      <Grid item md={2} lg={2}>
         <StickyBox offsetTop={90} offsetBottom={20}>
           <Toolbar selectCategory={selectCategory} />
         </StickyBox>
@@ -50,7 +50,7 @@ const Snippets = () => {
       <Grid
         item
         container
-        xs={6}
+        lg={6}
         direction="column"
         justify="space-between"
         alignItems="stretch"
@@ -78,7 +78,7 @@ const Snippets = () => {
             );
           })}
       </Grid>
-      <Grid item xs={4}>
+      <Grid item xs={12} md={12} lg={4}>
         {categories.length === 0 ? (
           <div>
             <p>Please add a new category before adding a code snippet</p>

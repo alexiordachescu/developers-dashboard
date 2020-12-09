@@ -35,7 +35,7 @@ const Links = () => {
 
   return (
     <Grid container>
-      <Grid item xs={2}>
+      <Grid item lg={2}>
         <StickyBox offsetTop={90} offsetBottom={20}>
           <Toolbar selectCategory={selectCategory} />
         </StickyBox>
@@ -43,7 +43,7 @@ const Links = () => {
       <Grid
         item
         container
-        xs={7}
+        lg={7}
         direction="row"
         justify="center"
         alignItems="center"
@@ -67,7 +67,7 @@ const Links = () => {
           })}
       </Grid>
 
-      <Grid item xs={3}>
+      <Grid item xs={12} lg={3}>
         {categories.length === 0 ? (
           <div>
             <p>Please use toolbar on the left to add new links</p>
