@@ -7,30 +7,49 @@ import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Favorite from "@material-ui/icons/Favorite";
 import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
+import { Grid, Typography } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core";
+
+const useStyles = makeStyles((theme) => ({
+  toolbar: {
+    backgroundColor: "#333333",
+    color: "#FFFFFF",
+  },
+  toolbarTitle: {
+    color: "#5e35b1",
+  },
+}));
 
 export default function Toolbar({ selectCategory }) {
   const categories = useSelector(selectCategories);
+  const classes = useStyles();
 
   return (
     <div>
-      <Paper elevation={2}>
-        <h2>
-          Please select a category to show the corresponding results for it:
-        </h2>
+      <Paper elevation={2} className={classes.toolbar}>
+        <Typography className={classes.toolbarTitle} variant="h5">
+          Select category:
+        </Typography>
         {categories.map((category) => {
           return (
-            <FormControlLabel
+            <Grid
+              container
               key={category.id}
-              control={
-                <Checkbox
-                  icon={<FavoriteBorder />}
-                  onClick={() => selectCategory(category.id)}
-                  color="primary"
-                  checkedIcon={<Favorite />}
-                />
-              }
-              label={category.name}
-            />
+              alignItems="center"
+              justify="center"
+            >
+              <FormControlLabel
+                control={
+                  <Checkbox
+                    icon={<FavoriteBorder />}
+                    onClick={() => selectCategory(category.id)}
+                    color="primary"
+                    checkedIcon={<Favorite />}
+                  />
+                }
+                label={category.name}
+              />
+            </Grid>
           );
         })}{" "}
         <AddCategory />

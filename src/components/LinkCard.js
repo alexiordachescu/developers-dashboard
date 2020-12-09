@@ -8,13 +8,20 @@ import Typography from "@material-ui/core/Typography";
 import { useDispatch } from "react-redux";
 import { onLinkDelete } from "../store/links/actions";
 import ClipBoard from "./ClipBoard";
-
+import { Grid } from "@material-ui/core";
 const useStyles = makeStyles({
   root: {
-    maxWidth: 450,
+    width: "25rem",
+    height: "10rem",
+    backgroundColor: "#333333",
   },
   media: {
     height: 140,
+    color: "#FFFFFF",
+    textDecoration: "none",
+  },
+  linkName: {
+    color: "#5e35b1",
   },
 });
 
@@ -30,18 +37,22 @@ const LinkCard = (props) => {
     <div>
       <Card className={classes.root}>
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
-            {props.name}
+          <Grid item container xs={12} justify="space-between">
+            <Typography
+              gutterBottom
+              variant="h5"
+              component="h2"
+              className={classes.linkName}
+            >
+              {props.name}
+            </Typography>
+            <ClipBoard code={props.content} />
+          </Grid>
+          <Typography variant="body2" color="textSecondary" component="span">
+            <a href={props.content} className={classes.media}>
+              {props.content}
+            </a>
           </Typography>
-          <Typography
-            variant="body2"
-            color="textSecondary"
-            component="span"
-            className={classes.media}
-          >
-            <a href={props.content}>{props.content}</a>
-          </Typography>
-          <ClipBoard code={props.content} />
         </CardContent>
         <CardActions>
           <Button

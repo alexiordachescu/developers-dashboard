@@ -1,5 +1,5 @@
 import React from "react";
-import FileCopyIcon from "@material-ui/icons/FileCopy";
+import AssignmentIcon from "@material-ui/icons/Assignment";
 import CheckIcon from "@material-ui/icons/Check";
 import useCopyToClipboard from "../utils/useCopyToClipboard";
 
@@ -8,7 +8,7 @@ export default function ClipBoard({ code }) {
 
   return (
     <button onClick={() => handleCopy(code)}>
-      {isCopied ? <CheckIcon /> : <FileCopyIcon />}
+      {isCopied ? <CheckIcon /> : <AssignmentIcon />}
     </button>
   );
 }

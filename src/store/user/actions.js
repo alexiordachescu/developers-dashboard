@@ -1,6 +1,7 @@
 import Axios from "axios";
 import { apiUrl } from "../../config/constants";
 import { getCategories } from "../categories/actions";
+import { getAllSnippets } from "../snippets/actions";
 import { selectToken } from "./selectors";
 import {
   appLoading,
@@ -29,6 +30,12 @@ export const signUp = (name, email, password) => {
         password,
       });
       dispatch(loginSuccess(response.data));
+
+      dispatch(getCategories);
+      dispatch(getAllSnippets());
+    } catch (e) {
+      console.log(e);
+
       dispatch(showMessageWithTimeout("success", "account created"));
       dispatch(appDoneLoading());
     } catch (error) {
@@ -40,6 +47,7 @@ export const signUp = (name, email, password) => {
         dispatch(setAppMessage("error", error.message));
       }
       dispatch(appDoneLoading());
+
     }
   };
 };
@@ -78,6 +86,11 @@ export const getUserWithStoredToken = async (dispatch, getState) => {
     const response = await Axios.get(`${apiUrl}/me`, {
       headers: { Authorization: `Bearer ${token}` },
     });
+
+    dispatch(getCategories);
+    dispatch(getAllSnippets());
+
+
     dispatch(tokenStillValid(response.data));
     dispatch(getCategories);
     dispatch(appDoneLoading());

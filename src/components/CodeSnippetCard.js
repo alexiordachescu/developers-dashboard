@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
+import Grid from "@material-ui/core/Grid";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { a11yDark } from "react-syntax-highlighter/dist/esm/styles/prism";
+import {
+  a11yDark,
+  dracula,
+} from "react-syntax-highlighter/dist/esm/styles/prism";
 import { useDispatch } from "react-redux";
 import {
   editCodeSnippet,
@@ -19,13 +23,15 @@ import ClipBoard from "./ClipBoard";
 const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
-      margin: theme.spacing(1),
-      maxWidth: 450,
+      backgroundColor: "#333333",
     },
   },
   media: {
     height: 140,
+    color: "#5e35b1",
   },
+  textColor: { color: "#5e35b1" },
+  commentsColor: { color: "#FFFFFF" },
 }));
 
 const CodeSnippetCard = (props) => {
@@ -35,11 +41,7 @@ const CodeSnippetCard = (props) => {
   const [editText, setEditText] = useState("");
   const [editCommentText, setEditCommentText] = useState("");
 
-  // console.log("i am edit text,", editText);
-  // console.log("i am id,", props.id);
-
   function editSnippet() {
-    // console.log("snippet id", props.id);
     dispatch(editCodeSnippet(editText, props.id));
     setEditMode(false);
   }
@@ -49,8 +51,6 @@ const CodeSnippetCard = (props) => {
     setEditCommentMode(false);
   }
   const onDelete = (id) => {
-    // console.log("deleting snippet!", id);
-
     dispatch(deleteSnippet(id));
   };
 
@@ -60,7 +60,12 @@ const CodeSnippetCard = (props) => {
       <Card className={classes.root}>
         {/* <CardActionArea> */}
         <CardContent>
-          <Typography gutterBottom variant="h5" component="h2">
+          <Typography
+            gutterBottom
+            variant="h3"
+            component="h2"
+            className={classes.textColor}
+          >
             {props.name}
           </Typography>
           {!editMode ? (
@@ -70,16 +75,30 @@ const CodeSnippetCard = (props) => {
               component="span"
               className={classes.media}
             >
-              <SyntaxHighlighter
-                language="js"
-                style={a11yDark}
-                children={props.content}
-                showLineNumbers={true}
-              />
-              <ClipBoard code={props.content} />
+              <Grid container direction="column" alignItems="center">
+                <Grid item container xs={12} justify="flex-end">
+                  <ClipBoard code={props.content} />
+                </Grid>
+                <Grid
+                  item
+                  container
+                  xs={12}
+                  direction="column"
+                  justify="center"
+                  alignItems="stretch"
+                >
+                  <SyntaxHighlighter
+                    language="js"
+                    style={dracula}
+                    children={props.content}
+                    showLineNumbers={true}
+                    wrapLongLines={true}
+                  />
+                </Grid>
+              </Grid>
             </Typography>
           ) : (
-            <div>
+            <Grid item>
               <Typography
                 variant="body2"
                 color="textSecondary"
@@ -104,10 +123,15 @@ const CodeSnippetCard = (props) => {
               >
                 save
               </Button>
-            </div>
+            </Grid>
           )}
           {!editCommentMode ? (
-            <Typography gutterBottom variant="h5" component="h2">
+            <Typography
+              gutterBottom
+              variant="body1"
+              component="h2"
+              className={classes.commentsColor}
+            >
               {props.comment}
             </Typography>
           ) : (
@@ -131,10 +155,7 @@ const CodeSnippetCard = (props) => {
                 save
               </Button>
             </div>
-          )}
-        </CardContent>
-        {/* </CardActionArea> */}
-        <CardActions>
+          )}{" "}
           <Button
             size="small"
             color="primary"
@@ -144,10 +165,9 @@ const CodeSnippetCard = (props) => {
           >
             edit comment
           </Button>
-
           <Button
             size="small"
-            color="primary"
+            color="secondary"
             onClick={() => {
               onDelete(props.id);
             }}
@@ -163,7 +183,8 @@ const CodeSnippetCard = (props) => {
           >
             edit snippet
           </Button>
-        </CardActions>
+        </CardContent>
+        {/* </CardActionArea> */}
       </Card>
     </div>
   );
