@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllLinks } from "../store/links/actions";
-import { selectAllLinks } from "../store/links/selector";
+import { selectAllLinks } from "../store/links/selectors";
 import LinkCard from "../components/LinkCard";
 
 import { Grid } from "@material-ui/core";
