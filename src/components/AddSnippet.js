@@ -1,4 +1,14 @@
-import React, { useState, useRef } from "react";
+import {
+  Button,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Paper,
+  Select,
+  TextField,
+} from "@material-ui/core";
+import React, { useState } from "react";
+import { makeStyles } from "@material-ui/core/styles";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCategories } from "../store/categories/selectors";
 import { addSnippet } from "../store/snippets/actions";
@@ -9,77 +19,85 @@ const initialForm = {
   content: "",
   comment: "",
 };
-
+const useStyles = makeStyles((theme) => ({
+  formControl: {
+    margin: theme.spacing(1),
+    minWidth: 120,
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
+}));
 export default function AddSnippet() {
+  const classes = useStyles();
   const dispatch = useDispatch();
   const categories = useSelector(selectCategories);
   const [form, setForm] = useState(initialForm);
-  const selectCategoryRef = useRef();
 
   function submitForm(e) {
     e.preventDefault();
     dispatch(addSnippet(form));
     setForm(initialForm);
-    selectCategoryRef.current.value = "";
   }
 
   if (categories.length === 0) return null;
 
   return (
-    <form onSubmit={submitForm}>
-      <div>
-        <label htmlFor="snippetCategory">Select a category</label>
-        <select
-          id="snippetCategory"
-          name="snippetCategory"
-          defaultValue="select"
-          onChange={(e) => setForm({ ...form, category: e.target.value })}
+    <Paper>
+      <FormControl variant="outlined" className={classes.formControl} fullWidth>
+        <InputLabel id="demo-simple-select-outlined-label">
+          Technology
+        </InputLabel>
+        <Select
+          labelId="demo-simple-select-outlined-label"
+          id="demo-simple-select-outlined"
+          value={form.category}
           required
-          ref={selectCategoryRef}
+          onChange={(e) => setForm({ ...form, category: e.target.value })}
+          label="Technology"
         >
-          <option value="">select</option>
           {categories.map((category) => (
-            <option key={category.id} value={category.name}>
+            <MenuItem key={category.id} value={category.name}>
               {category.name}
-            </option>
+            </MenuItem>
           ))}
-        </select>
-      </div>
-      <div>
-        <label htmlFor="snippetName">Give your snippet a name</label>
-        <input
-          id="snippetName"
-          name="snippetName"
+        </Select>
+
+        <TextField
+          id="outlined-multiline-flexible"
+          label="Add a snippet name"
+          fullWidth
+          required
+          variant="outlined"
           value={form.name}
           onChange={(e) => setForm({ ...form, name: e.target.value })}
-          placeholder="Snippet name"
+        />
+
+        <TextField
+          id="outlined-multiline-flexible"
+          label="Add a code snippet"
+          multiline
+          fullWidth
           required
-        ></input>
-      </div>
-      <div>
-        <label htmlFor="snippetContent">Add a code snippet</label>
-        <textarea
-          id="snippetContent"
-          name="snippetContent"
+          variant="outlined"
           value={form.content}
           onChange={(e) => setForm({ ...form, content: e.target.value })}
-          placeholder="You can add a code snippet here"
-          required
-        ></textarea>
-      </div>
-      <div>
-        <label htmlFor="snippetComment">Add a comment?</label>
-        <textarea
-          id="snippetComment"
-          name="snippetComment"
+        />
+
+        <TextField
+          id="outlined-multiline-flexible"
+          label="Add a comment"
+          multiline
+          fullWidth
+          variant="outlined"
           value={form.comment}
           onChange={(e) => setForm({ ...form, comment: e.target.value })}
-          placeholder="You can add a comment"
-        ></textarea>
-      </div>
-      <div>
-        <button type="submit">Add</button>
-      </div>
-    </form>
+        />
+
+        <Button variant="contained" type="submit" onClick={submitForm}>
+          Add this snippet!
+        </Button>
+      </FormControl>
+    </Paper>
   );
 }

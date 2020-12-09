@@ -1,4 +1,15 @@
-import React, { useState, useRef } from "react";
+import {
+  Button,
+  FormControl,
+  Grid,
+  InputLabel,
+  makeStyles,
+  MenuItem,
+  Paper,
+  Select,
+  TextField,
+} from "@material-ui/core";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectCategories } from "../store/categories/selectors";
 import { addLink } from "../store/links/actions";
@@ -9,66 +20,78 @@ const initialForm = {
   content: "",
 };
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    backgroundColor: "#333333",
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
+  form: {
+    width: "100%",
+    backgroundColor: "rgba(255, 255, 255, 0.3)",
+  },
+}));
+
 export default function AddLink() {
+  const classes = useStyles();
   const dispatch = useDispatch();
   const categories = useSelector(selectCategories);
   const [form, setForm] = useState(initialForm);
-  const selectCategoryRef = useRef();
 
   function submitForm(e) {
     e.preventDefault();
     dispatch(addLink(form));
     setForm(initialForm);
-    selectCategoryRef.current.value = "";
   }
 
   if (categories.length === 0) return null;
 
   return (
-    <form onSubmit={submitForm}>
-      <div>
-        <label htmlFor="linkCategory">Select a category</label>
-        <select
-          id="linkCategory"
-          name="linkCategory"
-          defaultValue="select"
-          onChange={(e) => setForm({ ...form, category: e.target.value })}
+    <Paper elevation={3} className={classes.root}>
+      <FormControl variant="outlined" className={classes.form}>
+        <InputLabel id="demo-simple-select-outlined-label">
+          Technology
+        </InputLabel>
+        <Select
+          labelId="demo-simple-select-outlined-label"
+          id="demo-simple-select-outlined"
+          value={form.category}
           required
-          ref={selectCategoryRef}
+          onChange={(e) => setForm({ ...form, category: e.target.value })}
+          label="Choose Technology"
         >
-          <option value="">select</option>
           {categories.map((category) => (
-            <option key={category.id} value={category.name}>
+            <MenuItem key={category.id} value={category.name}>
               {category.name}
-            </option>
+            </MenuItem>
           ))}
-        </select>
-      </div>
-      <div>
-        <label htmlFor="linkName">Give your link a name</label>
-        <input
-          id="linkName"
-          name="linkName"
+        </Select>
+        <TextField
+          id="outlined-multiline-flexible"
+          label="Add a link name"
+          fullWidth
+          required
+          variant="outlined"
           value={form.name}
           onChange={(e) => setForm({ ...form, name: e.target.value })}
-          placeholder="Link name"
+        />
+
+        <TextField
+          id="outlined-multiline-flexible"
+          label="Add the link to this resource"
+          multiline
+          fullWidth
           required
-        ></input>
-      </div>
-      <div>
-        <label htmlFor="linkContent">Add a link</label>
-        <input
-          id="linkContent"
-          name="linkContent"
+          variant="outlined"
           value={form.content}
           onChange={(e) => setForm({ ...form, content: e.target.value })}
-          placeholder="Add a link"
-          required
-        ></input>
-      </div>
-      <div>
-        <button type="submit">Add</button>
-      </div>
-    </form>
+        />
+
+        <Button variant="contained" type="submit" onClick={submitForm}>
+          Add this link!
+        </Button>
+      </FormControl>
+    </Paper>
   );
 }

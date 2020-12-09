@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { login } from "../store/user/actions";
 import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 export default function LoginForm() {
+  const history = useHistory();
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -12,6 +14,7 @@ export default function LoginForm() {
     dispatch(login(email, password));
     setEmail("");
     setPassword("");
+    history.push("/developersSnippets");
   };
   return (
     <div>

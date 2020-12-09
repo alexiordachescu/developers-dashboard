@@ -7,9 +7,27 @@ import Grid from "@material-ui/core/Grid";
 import Toolbar from "../components/Toolbar";
 import { selectCategories } from "../store/categories/selectors";
 import AddSnippet from "../components/AddSnippet";
+import { makeStyles } from "@material-ui/core/styles";
+import StickyBox from "react-sticky-box/dist/esnext";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    "& > *": {
+      margin: theme.spacing(1),
+      width: 600,
+    },
+  },
+  media: {
+    height: 140,
+  },
+  gridStyle: {
+    padding: "0 15px 0 15px",
+  },
+}));
 
 const Snippets = () => {
   const dispatch = useDispatch();
+  const classes = useStyles();
   const snippets = useSelector(selectAllSnippets);
   const categories = useSelector(selectCategories);
 
@@ -31,9 +49,20 @@ const Snippets = () => {
   return (
     <Grid container>
       <Grid item xs={2}>
-        <Toolbar selectCategory={selectCategory} />
+        <StickyBox offsetTop={90} offsetBottom={20}>
+          <Toolbar selectCategory={selectCategory} />
+        </StickyBox>
       </Grid>
-      <Grid item xs={10}>
+      <Grid
+        item
+        container
+        xs={6}
+        direction="column"
+        justify="space-between"
+        alignItems="stretch"
+        spacing={2}
+        className={classes.gridStyle}
+      >
         {snippets
           .filter((s) => {
             if (category.length === 0) {
@@ -44,23 +73,28 @@ const Snippets = () => {
           })
           .map((s) => {
             return (
-              <CodeSnippetCard
-                key={s.id}
-                name={s.name}
-                content={s.content}
-                comment={s.comment}
-                id={s.id}
-              />
+              <Grid key={s.id} item xs={12}>
+                <CodeSnippetCard
+                  name={s.name}
+                  content={s.content}
+                  comment={s.comment}
+                  id={s.id}
+                />
+              </Grid>
             );
           })}
       </Grid>
-      {categories.length === 0 ? (
-        <div>
-          <p>Please add a new category before adding a code snippet</p>
-        </div>
-      ) : (
-        <AddSnippet />
-      )}
+      <Grid item xs={4}>
+        {categories.length === 0 ? (
+          <div>
+            <p>Please add a new category before adding a code snippet</p>
+          </div>
+        ) : (
+          <StickyBox offsetTop={90} offsetBottom={20}>
+            <AddSnippet />
+          </StickyBox>
+        )}
+      </Grid>
     </Grid>
   );
 };

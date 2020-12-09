@@ -1,6 +1,7 @@
 import Axios from "axios";
 import { apiUrl } from "../../config/constants";
 import { getCategories } from "../categories/actions";
+import { getAllSnippets } from "../snippets/actions";
 import { selectToken } from "./selectors";
 
 export const loginSuccess = (response) => ({
@@ -20,6 +21,7 @@ export const login = (email, password) => {
       console.log(response.data);
       dispatch(loginSuccess(response.data));
       dispatch(getCategories);
+      dispatch(getAllSnippets());
     } catch (e) {
       console.log(e);
     }
@@ -52,6 +54,7 @@ export const getUserWithStoredToken = async (dispatch, getState) => {
       headers: { Authorization: `Bearer ${token}` },
     });
     dispatch(getCategories);
+    dispatch(getAllSnippets());
 
     dispatch(tokenStillValid(response.data));
   } catch (error) {

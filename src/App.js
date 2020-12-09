@@ -11,6 +11,7 @@ import Links from "./pages/Links";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import { getUserWithStoredToken } from "./store/user/actions";
+import StickyBox from "react-sticky-box/dist/esnext";
 
 function App() {
   const dispatch = useDispatch();
@@ -21,7 +22,10 @@ function App() {
 
   return (
     <div className="App">
-      <Navbar />
+      <StickyBox offsetTop={0} offsetBottom={20}>
+        <Navbar />
+      </StickyBox>
+
       <Switch>
         <Route exact path="/developersLinks" component={Links} />
         <Route exact path="/developersSnippets" component={Snippets} />
