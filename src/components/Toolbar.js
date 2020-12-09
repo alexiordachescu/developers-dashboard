@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
     color: "#FFFFFF",
   },
   toolbarTitle: {
-    color: "#5e35b1",
+    color: "#58A6FF",
   },
 }));
 
@@ -33,10 +33,11 @@ export default function Toolbar({ selectCategory }) {
         {categories.map((category) => {
           return (
             <Grid
-              container
               key={category.id}
-              alignItems="center"
-              justify="center"
+              container
+              direction="column"
+              alignItems="stretch"
+              justify="space-between"
             >
               <FormControlLabel
                 control={

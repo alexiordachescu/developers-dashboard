@@ -20,9 +20,12 @@ const initialForm = {
   comment: "",
 };
 const useStyles = makeStyles((theme) => ({
+  root: {
+    backgroundColor: "#333333",
+  },
   formControl: {
-    margin: theme.spacing(1),
-    minWidth: 120,
+    width: "100%",
+    backgroundColor: "rgba(255, 255, 255, 0.3)",
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
@@ -43,8 +46,8 @@ export default function AddSnippet() {
   if (categories.length === 0) return null;
 
   return (
-    <Paper>
-      <FormControl variant="outlined" className={classes.formControl} fullWidth>
+    <Paper elevation={3} className={classes.root}>
+      <FormControl variant="outlined" className={classes.formControl}>
         <InputLabel id="demo-simple-select-outlined-label">
           Technology
         </InputLabel>

@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     height: 140,
     color: "#5e35b1",
   },
-  textColor: { color: "#5e35b1" },
+  textColor: { color: "#58A6FF" },
   commentsColor: { color: "#FFFFFF" },
 }));
 
