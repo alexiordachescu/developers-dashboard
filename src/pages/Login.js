@@ -10,7 +10,7 @@ export default function Login() {
 
   useEffect(() => {
     if (token !== null) {
-      history.push("/");
+      history.push("/developersSnippets");
     }
   }, [token, history]);
 

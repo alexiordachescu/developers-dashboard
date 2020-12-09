@@ -44,7 +44,7 @@ export default function Message({ slice }) {
   return (
     <div style={{ color: message.type === "error" ? "red" : "green" }}>
       <p>
-        {slice}: {message.text}{" "}
+        {message.text}{" "}
         {message.type === "error" && (
           <button onClick={() => dispatch(clearMessage())}> X </button>
         )}

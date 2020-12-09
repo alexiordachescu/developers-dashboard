@@ -11,6 +11,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { Link, useHistory } from "react-router-dom";
 import { logOut } from "../store/user/actions";
 import { selectToken, selectUser } from "../store/user/selectors";
+import SearchIcon from "@material-ui/icons/Search";
 
 const useStyles = makeStyles((theme) => ({
   appBar: {
@@ -34,15 +35,21 @@ const Navbar = () => {
     <nav>
       <AppBar position="static" className={classes.appBar}>
         <Toolbar>
-          <Grid container>
-            <Grid item xs={4}>
+          <Grid container justify="space-between" alignItems="center">
+            <Grid item xs={3}>
               <Link style={{ color: "white", textDecoration: "none" }} to="/">
-                <Typography variant="h6">
-                  Welcome to Dev's dashboard!
-                </Typography>
+                {user.name ? (
+                  <Typography variant="h6">
+                    Welcome to Dev's dashboard, {user.name}!
+                  </Typography>
+                ) : (
+                  <Typography variant="h6">
+                    Welcome to Dev's dashboard!
+                  </Typography>
+                )}
               </Link>
             </Grid>
-            <Grid item xs={4}>
+            <Grid item xs={3}>
               <Link
                 style={{ color: "white", textDecoration: "none" }}
                 to="/developersSnippets"
@@ -50,7 +57,7 @@ const Navbar = () => {
                 <Typography variant="h6">Developers Snippets</Typography>
               </Link>
             </Grid>
-            <Grid item xs={4}>
+            <Grid item xs={3}>
               <Link
                 style={{ color: "white", textDecoration: "none" }}
                 to="/developersLinks"
@@ -58,6 +65,14 @@ const Navbar = () => {
                 <Typography variant="h6">Developers Links</Typography>
               </Link>
             </Grid>
+          </Grid>
+          <Grid item xs={3}>
+            <Link
+              style={{ color: "white", textDecoration: "none" }}
+              to="/search"
+            >
+              <SearchIcon />
+            </Link>
           </Grid>
 
           {!token ? (
@@ -69,7 +84,7 @@ const Navbar = () => {
             </Link>
           ) : (
             <>
-              <span>Hello, {user.name}</span>
+              {" "}
               <Button
                 color="inherit"
                 onClick={() => {

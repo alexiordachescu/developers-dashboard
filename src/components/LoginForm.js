@@ -14,7 +14,6 @@ export default function LoginForm() {
     dispatch(login(email, password));
     setEmail("");
     setPassword("");
-    history.push("/developersSnippets");
   };
   return (
     <div>
