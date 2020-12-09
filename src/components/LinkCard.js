@@ -9,6 +9,8 @@ import { useDispatch } from "react-redux";
 import { onLinkDelete } from "../store/links/actions";
 import ClipBoard from "./ClipBoard";
 import { Grid } from "@material-ui/core";
+import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
+
 const useStyles = makeStyles({
   root: {
     width: "25rem",
@@ -57,8 +59,11 @@ const LinkCard = (props) => {
         <CardActions>
           <Button
             size="small"
-            color="primary"
+            color="secondary"
+            variant="contained"
+            disableElevation
             onClick={() => onDelete(props.id)}
+            endIcon={<DeleteForeverIcon />}
           >
             Remove Link
           </Button>

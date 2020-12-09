@@ -19,6 +19,9 @@ import {
 } from "../store/snippets/actions";
 import TextField from "@material-ui/core/TextField";
 import ClipBoard from "./ClipBoard";
+import EditIcon from "@material-ui/icons/Edit";
+import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
+import RateReviewIcon from "@material-ui/icons/RateReview";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -156,35 +159,50 @@ const CodeSnippetCard = (props) => {
               </Button>
             </div>
           )}{" "}
-          <Button
-            size="small"
-            color="primary"
-            onClick={() => {
-              setEditCommentMode(!editCommentMode);
-            }}
+          <Grid
+            container
+            direction="row"
+            justify="space-between"
+            alignItems="center"
           >
-            edit comment
-          </Button>
-          <Button
-            size="small"
-            color="secondary"
-            onClick={() => {
-              onDelete(props.id);
-            }}
-          >
-            remove snippet
-          </Button>
-          <Button
-            size="small"
-            color="primary"
-            onClick={() => {
-              setEditMode(!editMode);
-            }}
-          >
-            edit snippet
-          </Button>
+            <Button
+              size="small"
+              color="primary"
+              variant="contained"
+              disableElevation
+              onClick={() => {
+                setEditCommentMode(!editCommentMode);
+              }}
+              endIcon={<RateReviewIcon />}
+            >
+              edit comment
+            </Button>
+            <Button
+              size="small"
+              color="primary"
+              variant="contained"
+              disableElevation
+              onClick={() => {
+                setEditMode(!editMode);
+              }}
+              endIcon={<EditIcon />}
+            >
+              edit snippet
+            </Button>
+            <Button
+              size="small"
+              color="secondary"
+              variant="contained"
+              disableElevation
+              onClick={() => {
+                onDelete(props.id);
+              }}
+              endIcon={<DeleteForeverIcon />}
+            >
+              remove snippet
+            </Button>
+          </Grid>
         </CardContent>
-        {/* </CardActionArea> */}
       </Card>
     </div>
   );
