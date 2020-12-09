@@ -33,11 +33,6 @@ export const signUp = (name, email, password) => {
 
       dispatch(getCategories);
       dispatch(getAllSnippets());
-    } catch (e) {
-      console.log(e);
-
-      dispatch(showMessageWithTimeout("success", "account created"));
-      dispatch(appDoneLoading());
     } catch (error) {
       if (error.response?.data?.message) {
         console.log(error.response.data.message);
@@ -47,7 +42,6 @@ export const signUp = (name, email, password) => {
         dispatch(setAppMessage("error", error.message));
       }
       dispatch(appDoneLoading());
-
     }
   };
 };
@@ -60,6 +54,7 @@ export const login = (email, password) => {
       console.log(response.data);
       dispatch(loginSuccess(response.data));
       dispatch(getCategories);
+      dispatch(getAllSnippets());
       dispatch(showMessageWithTimeout("success", "welcome back!"));
       dispatch(appDoneLoading());
     } catch (error) {
@@ -89,7 +84,6 @@ export const getUserWithStoredToken = async (dispatch, getState) => {
 
     dispatch(getCategories);
     dispatch(getAllSnippets());
-
 
     dispatch(tokenStillValid(response.data));
     dispatch(getCategories);
