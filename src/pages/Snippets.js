@@ -42,7 +42,7 @@ const Snippets = () => {
 
   return (
     <Grid container>
-      <Grid item md={2} lg={2}>
+      <Grid item xs={12} md={2} lg={2}>
         <StickyBox offsetTop={90} offsetBottom={20}>
           <Toolbar selectCategory={selectCategory} />
         </StickyBox>

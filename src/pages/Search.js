@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { selectAllSnippets } from "../store/snippets/selectors";
 import { selectAllLinks } from "../store/links/selectors";
 import LinkCard from "../components/LinkCard";
@@ -22,7 +22,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Search() {
-
   const classes = useStyles();
   const dispatch = useDispatch();
   const allSnippets = useSelector(selectAllSnippets);

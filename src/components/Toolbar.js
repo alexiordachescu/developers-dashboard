@@ -27,33 +27,40 @@ export default function Toolbar({ selectCategory }) {
   return (
     <div>
       <Paper elevation={2} className={classes.toolbar}>
-        <Typography className={classes.toolbarTitle} variant="h5">
-          Select category:
-        </Typography>
-        {categories.map((category) => {
-          return (
-            <Grid
-              key={category.id}
-              container
-              direction="column"
-              alignItems="stretch"
-              justify="space-between"
-            >
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    icon={<FavoriteBorder />}
-                    onClick={() => selectCategory(category.id)}
-                    color="primary"
-                    checkedIcon={<Favorite />}
-                  />
-                }
-                label={category.name}
-              />
-            </Grid>
-          );
-        })}{" "}
-        <AddCategory />
+        <Grid
+          container
+          direction="row"
+          justify="space-evenly"
+          alignItems="center"
+        >
+          <Typography className={classes.toolbarTitle} variant="h5">
+            Select category:
+          </Typography>
+          {categories.map((category) => {
+            return (
+              <Grid
+                key={category.id}
+                container
+                direction="column"
+                alignItems="stretch"
+                justify="space-between"
+              >
+                <FormControlLabel
+                  control={
+                    <Checkbox
+                      icon={<FavoriteBorder />}
+                      onClick={() => selectCategory(category.id)}
+                      color="primary"
+                      checkedIcon={<Favorite />}
+                    />
+                  }
+                  label={category.name}
+                />
+              </Grid>
+            );
+          })}
+          <AddCategory />
+        </Grid>
       </Paper>
     </div>
   );
