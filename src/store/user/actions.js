@@ -3,6 +3,12 @@ import { apiUrl } from "../../config/constants";
 import { getCategories } from "../categories/actions";
 import { getAllSnippets } from "../snippets/actions";
 import { selectToken } from "./selectors";
+import {
+  appLoading,
+  appDoneLoading,
+  showMessageWithTimeout,
+  setAppMessage,
+} from "../appState/actions";
 
 export const loginSuccess = (response) => ({
   type: "LOGIN_SUCCESS",
@@ -14,24 +20,9 @@ const tokenStillValid = (userWithoutToken) => ({
   payload: userWithoutToken,
 });
 
-export const login = (email, password) => {
-  return async (dispatch, getState) => {
-    try {
-      const response = await Axios.post(`${apiUrl}/login`, { email, password });
-      console.log(response.data);
-      dispatch(loginSuccess(response.data));
-      dispatch(getCategories);
-      dispatch(getAllSnippets());
-    } catch (e) {
-      console.log(e);
-    }
-  };
-};
-
-export const logOut = () => ({ type: "LOG_OUT" });
-
 export const signUp = (name, email, password) => {
   return async (dispatch, getState) => {
+    dispatch(appLoading());
     try {
       const response = await Axios.post(`${apiUrl}/signup`, {
         name,
@@ -39,24 +30,70 @@ export const signUp = (name, email, password) => {
         password,
       });
       dispatch(loginSuccess(response.data));
+
+      dispatch(getCategories);
+      dispatch(getAllSnippets());
     } catch (e) {
       console.log(e);
+
+      dispatch(showMessageWithTimeout("success", "account created"));
+      dispatch(appDoneLoading());
+    } catch (error) {
+      if (error.response?.data?.message) {
+        console.log(error.response.data.message);
+        dispatch(setAppMessage("error", error.response.data.message));
+      } else {
+        console.log(error.message);
+        dispatch(setAppMessage("error", error.message));
+      }
+      dispatch(appDoneLoading());
+
     }
   };
 };
+
+export const login = (email, password) => {
+  return async (dispatch, getState) => {
+    dispatch(appLoading());
+    try {
+      const response = await Axios.post(`${apiUrl}/login`, { email, password });
+      console.log(response.data);
+      dispatch(loginSuccess(response.data));
+      dispatch(getCategories);
+      dispatch(showMessageWithTimeout("success", "welcome back!"));
+      dispatch(appDoneLoading());
+    } catch (error) {
+      if (error.response?.data?.message) {
+        console.log(error.response.data.message);
+        dispatch(setAppMessage("error", error.response.data.message));
+      } else {
+        console.log(error.message);
+        dispatch(setAppMessage("error", error.message));
+      }
+      dispatch(appDoneLoading());
+    }
+  };
+};
+
+export const logOut = () => ({ type: "LOG_OUT" });
 
 export const getUserWithStoredToken = async (dispatch, getState) => {
   const token = selectToken(getState());
   if (token === null) return;
 
+  dispatch(appLoading());
   try {
     const response = await Axios.get(`${apiUrl}/me`, {
       headers: { Authorization: `Bearer ${token}` },
     });
+
     dispatch(getCategories);
     dispatch(getAllSnippets());
 
+
     dispatch(tokenStillValid(response.data));
+    dispatch(getCategories);
+    dispatch(appDoneLoading());
   } catch (error) {
     if (error.response?.data?.message) {
       console.log(error.response.data.message);
@@ -64,5 +101,6 @@ export const getUserWithStoredToken = async (dispatch, getState) => {
       console.log(error.message);
     }
     dispatch(logOut());
+    dispatch(appDoneLoading());
   }
 };

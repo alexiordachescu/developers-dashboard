@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllSnippets } from "../store/snippets/actions";
-import { selectAllSnippets } from "../store/snippets/selector";
+import { selectAllSnippets } from "../store/snippets/selectors";
 import CodeSnippetCard from "../components/CodeSnippetCard";
 import Grid from "@material-ui/core/Grid";
 import Toolbar from "../components/Toolbar";

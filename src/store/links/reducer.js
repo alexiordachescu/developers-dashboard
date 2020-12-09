@@ -1,7 +1,19 @@
-const initialState = { all: [] };
+const initialState = { loading: false, message: null, all: [] };
 
 const linksReducer = (state = initialState, action) => {
   switch (action.type) {
+    case "LINKS_LOADING":
+      return { ...state, loading: true };
+
+    case "LINKS_DONE_LOADING":
+      return { ...state, loading: false };
+
+    case "SET_LINKS_MESSAGE":
+      return { ...state, message: action.payload };
+
+    case "CLEAR_LINKS_MESSAGE":
+      return { ...state, message: null };
+
     case "ALL_LINKS_SUCCESS":
       return { ...state, all: action.payload };
     case "LINK_DELETE_SUCCESS":
