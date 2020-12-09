@@ -10,7 +10,7 @@ export const setSnippetsMessage = (text) => ({
 });
 export const clearSnippetsMessage = () => ({ type: "CLEAR_SNIPPETS_MESSAGE" });
 
-const getAllSnippetsSuccess = (snippets) => {
+export const getAllSnippetsSuccess = (snippets) => {
   return {
     type: "ALL_SNIPPETS_SUCCESS",
     payload: snippets,
@@ -40,32 +40,6 @@ const snippetDeleteSuccess = (snippetId) => {
   return {
     type: "SNIPPET_DELETE_SUCCESS",
     payload: snippetId,
-  };
-};
-
-export const getAllSnippets = () => {
-  return async (dispatch, getState) => {
-    const token = selectToken(getState());
-    if (token === null) return;
-    dispatch(snippetsLoading());
-    try {
-      const response = await axios.get(`${apiUrl}/snippets`, {
-        headers: { Authorization: `Bearer ${token} ` },
-      });
-      //   console.log("i am response.data", response.data);
-      // token is still valid
-      dispatch(getAllSnippetsSuccess(response.data));
-      dispatch(snippetsDoneLoading());
-    } catch (error) {
-      if (error.response?.data?.message) {
-        console.log(error.response.data.message);
-        dispatch(setSnippetsMessage(error.response.data.message));
-      } else {
-        console.log(error.message);
-        dispatch(setSnippetsMessage(error.message));
-      }
-      dispatch(snippetsDoneLoading());
-    }
   };
 };
 

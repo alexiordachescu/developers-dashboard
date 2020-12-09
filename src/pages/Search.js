@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { selectAllSnippets } from "../store/snippets/selectors";
 import { selectAllLinks } from "../store/links/selectors";
-import { getAllSnippets } from "../store/snippets/actions";
-import { getAllLinks } from "../store/links/actions";
 import LinkCard from "../components/LinkCard";
 import CodeSnippetCard from "../components/CodeSnippetCard";
 import { Grid, Paper, Typography } from "@material-ui/core";
@@ -24,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Search() {
+
   const classes = useStyles();
   const dispatch = useDispatch();
   const allSnippets = useSelector(selectAllSnippets);
@@ -33,12 +32,6 @@ export default function Search() {
     links: [],
     snippets: [],
   });
-
-  useEffect(() => {
-    if (allLinks.length === 0) {
-      dispatch(getAllLinks());
-    }
-  }, [dispatch, allLinks.length]);
 
   useEffect(() => {
     const linkResults = allLinks.filter(

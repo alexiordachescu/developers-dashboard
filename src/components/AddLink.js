@@ -1,7 +1,6 @@
 import {
   Button,
   FormControl,
-  Grid,
   InputLabel,
   makeStyles,
   MenuItem,
@@ -11,7 +10,7 @@ import {
 } from "@material-ui/core";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { selectCategories } from "../store/categories/selectors";
+import { selectAllCategories } from "../store/categories/selectors";
 import { addLink } from "../store/links/actions";
 
 const initialForm = {
@@ -36,7 +35,7 @@ const useStyles = makeStyles((theme) => ({
 export default function AddLink() {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const categories = useSelector(selectCategories);
+  const categories = useSelector(selectAllCategories);
   const [form, setForm] = useState(initialForm);
 
   function submitForm(e) {
