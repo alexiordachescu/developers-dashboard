@@ -119,6 +119,7 @@ const CodeSnippetCard = (props) => {
                 onClick={() => {
                   editSnippet();
                 }}
+                style={{ zIndex: -1 }}
               >
                 save
               </Button>
@@ -168,6 +169,7 @@ const CodeSnippetCard = (props) => {
               disableElevation
               onClick={() => {
                 setEditCommentMode(!editCommentMode);
+                setEditMode(false);
               }}
               endIcon={<RateReviewIcon />}
             >
@@ -180,6 +182,7 @@ const CodeSnippetCard = (props) => {
               disableElevation
               onClick={() => {
                 setEditMode(!editMode);
+                setEditCommentMode(false);
               }}
               endIcon={<EditIcon />}
             >

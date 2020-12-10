@@ -12,13 +12,19 @@ import {
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: "#333333",
+    width: "33%",
+    minWidth: "360px",
+    margin: "auto",
   },
   formControl: {
     width: "100%",
-    backgroundColor: "rgba(255, 255, 255, 0.3)",
+    backgroundColor: "rgba(255, 255, 255, 0.65)",
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
+  },
+  inputSpacing: {
+    marginTop: "1rem",
   },
 }));
 
@@ -54,6 +60,7 @@ export default function SignupForm() {
           required
           variant="outlined"
           value={email}
+          className={classes.inputSpacing}
           onChange={(e) => setEmail(e.target.value)}
         />
 
@@ -63,6 +70,8 @@ export default function SignupForm() {
           required
           variant="outlined"
           value={password}
+          type="password"
+          className={classes.inputSpacing}
           onChange={(e) => setPassword(e.target.value)}
         />
 

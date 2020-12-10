@@ -14,13 +14,19 @@ import {
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: "#333333",
+    width: "33%",
+    minWidth: "360px",
+    margin: "auto",
   },
   formControl: {
     width: "100%",
-    backgroundColor: "rgba(255, 255, 255, 0.3)",
+    backgroundColor: "rgba(255, 255, 255, 0.65)",
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
+  },
+  inputSpacing: {
+    marginTop: "1rem",
   },
 }));
 
@@ -52,10 +58,12 @@ export default function LoginForm() {
 
         <TextField
           id="outlined-multiline-flexible"
-          label="Enter Email Address"
+          label="Enter Password"
           required
           variant="outlined"
+          type="password"
           value={password}
+          className={classes.inputSpacing}
           onChange={(e) => setPassword(e.target.value)}
         />
 

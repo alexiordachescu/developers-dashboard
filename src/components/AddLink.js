@@ -28,7 +28,10 @@ const useStyles = makeStyles((theme) => ({
   },
   form: {
     width: "100%",
-    backgroundColor: "rgba(255, 255, 255, 0.5)",
+    backgroundColor: "rgba(255, 255, 255, 0.65)",
+  },
+  inputSpacing: {
+    marginTop: "1rem",
   },
 }));
 
@@ -73,6 +76,7 @@ export default function AddLink() {
           required
           variant="outlined"
           value={form.name}
+          className={classes.inputSpacing}
           onChange={(e) => setForm({ ...form, name: e.target.value })}
         />
 
@@ -84,6 +88,7 @@ export default function AddLink() {
           required
           variant="outlined"
           value={form.content}
+          className={classes.inputSpacing}
           onChange={(e) => setForm({ ...form, content: e.target.value })}
         />
 
