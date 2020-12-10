@@ -24,6 +24,12 @@ const linksReducer = (state = initialState, action) => {
       });
       return { ...state, all: newLinks };
 
+    case "DELETE_CATEGORY_LINKS":
+      return {
+        ...state,
+        all: state.all.filter((link) => !action.payload.includes(link.id)),
+      };
+
     case "ADD_LINK_SUCCESS":
       return { ...state, all: [...state.all, action.payload] };
 

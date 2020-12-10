@@ -54,6 +54,14 @@ const snippetsReducer = (state = initialState, action) => {
         all: newSnippets,
       };
 
+    case "DELETE_CATEGORY_SNIPPETS":
+      return {
+        ...state,
+        all: state.all.filter(
+          (snippet) => !action.payload.includes(snippet.id)
+        ),
+      };
+
     case "LOG_OUT":
       return initialState;
 
