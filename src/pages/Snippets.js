@@ -96,6 +96,7 @@ const Snippets = () => {
       </Grid>
       <Grid
         item
+        container
         direction="row"
         justify="center"
         alignItems="center"
