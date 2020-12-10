@@ -20,6 +20,9 @@ const categoriesReducer = (state = initialState, action) => {
     case "ALL_CATEGORIES_SUCCESS":
       return { ...state, all: action.payload };
 
+    case "LOG_OUT":
+      return initialState;
+
     default:
       return state;
   }
