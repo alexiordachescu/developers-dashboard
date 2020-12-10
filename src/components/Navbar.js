@@ -1,7 +1,6 @@
 import {
   AppBar,
   Button,
-  FormControl,
   Grid,
   makeStyles,
   Toolbar,
@@ -39,42 +38,40 @@ const Navbar = () => {
           <Grid container justify="space-around" alignItems="center">
             <Grid item>
               <Link style={{ color: "white", textDecoration: "none" }} to="/">
-                {user.name ? (
-                  <Typography variant="h6">
-                    Welcome to Dev's dashboard, {user.name}!
-                  </Typography>
-                ) : (
-                  <Typography variant="h6">
-                    Welcome to Dev's dashboard!
-                  </Typography>
-                )}
+                <Typography variant="h6">
+                  Welcome to Dev's dashboard{user.name && `, ${user.name}`}!
+                </Typography>
               </Link>
             </Grid>
-            <Grid item>
-              <Link
-                style={{ color: "white", textDecoration: "none" }}
-                to="/developersSnippets"
-              >
-                <Typography variant="h6">Developers Snippets</Typography>
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link
-                style={{ color: "white", textDecoration: "none" }}
-                to="/developersLinks"
-              >
-                <Typography variant="h6">Developers Links</Typography>
-              </Link>
-            </Grid>
+            {user.name && (
+              <>
+                <Grid item>
+                  <Link
+                    style={{ color: "white", textDecoration: "none" }}
+                    to="/developersSnippets"
+                  >
+                    <Typography variant="h6">Developers Snippets</Typography>
+                  </Link>
+                </Grid>
+                <Grid item>
+                  <Link
+                    style={{ color: "white", textDecoration: "none" }}
+                    to="/developersLinks"
+                  >
+                    <Typography variant="h6">Developers Links</Typography>
+                  </Link>
+                </Grid>
 
-            <Grid item>
-              <Link
-                style={{ color: "white", textDecoration: "none" }}
-                to="/search"
-              >
-                <SearchIcon />
-              </Link>
-            </Grid>
+                <Grid item>
+                  <Link
+                    style={{ color: "white", textDecoration: "none" }}
+                    to="/search"
+                  >
+                    <SearchIcon />
+                  </Link>
+                </Grid>
+              </>
+            )}
             <Grid item>
               {!token ? (
                 <Link

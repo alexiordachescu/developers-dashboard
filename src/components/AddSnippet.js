@@ -91,7 +91,6 @@ export default function AddSnippet() {
           </Select>
 
           <CssTextField
-            id="outlined-multiline-flexible"
             label="Add a snippet name"
             fullWidth
             required
@@ -102,7 +101,6 @@ export default function AddSnippet() {
           />
 
           <CssTextField
-            id="outlined-multiline-flexible"
             label="Add a code snippet"
             multiline
             fullWidth
@@ -114,7 +112,6 @@ export default function AddSnippet() {
           />
 
           <CssTextField
-            id="outlined-multiline-flexible"
             label="Add a comment"
             multiline
             fullWidth

@@ -9,7 +9,6 @@ import AddSnippet from "../components/AddSnippet";
 import { makeStyles } from "@material-ui/core/styles";
 import StickyBox from "react-sticky-box/dist/esnext";
 import { selectToken } from "../store/user/selectors";
-import { useHistory } from "react-router-dom";
 import { Typography } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
@@ -30,15 +29,12 @@ const useStyles = makeStyles((theme) => ({
 
 const Snippets = () => {
   const userToken = useSelector(selectToken);
-  const history = useHistory();
   const classes = useStyles();
   const snippets = useSelector(selectAllSnippets);
   const categories = useSelector(selectAllCategories);
-  if (!userToken) {
-    history.push("/login");
-  }
-
   const [category, setCategory] = useState([]);
+
+  if (!userToken) return null;
 
   const selectCategory = (id) => {
     let selectedCategory = id;
@@ -88,22 +84,21 @@ const Snippets = () => {
           })}
       </Grid>
       <Grid item xs={12} md={12} lg={4}>
-        {categories.length !== 0 && (
-          <StickyBox offsetTop={90} offsetBottom={20}>
-            <AddSnippet />
-          </StickyBox>
-        )}
+        <StickyBox offsetTop={90} offsetBottom={20}>
+          <AddSnippet />
+        </StickyBox>
       </Grid>
-      <Grid
-        item
-        container
-        direction="row"
-        justify="center"
-        alignItems="center"
-        xs={12}
-        lg={12}
-      >
-        {categories.length === 0 && (
+
+      {categories.length === 0 && (
+        <Grid
+          item
+          container
+          direction="row"
+          justify="center"
+          alignItems="center"
+          xs={12}
+          lg={12}
+        >
           <Typography
             variant="h5"
             style={{ color: "white", width: "66%", margin: "20px auto" }}
@@ -111,8 +106,8 @@ const Snippets = () => {
             Please use the toolbar to add new categories so you can add your own
             snippets to them
           </Typography>
-        )}
-      </Grid>
+        </Grid>
+      )}
     </Grid>
   );
 };

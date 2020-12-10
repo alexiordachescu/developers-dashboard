@@ -75,7 +75,6 @@ export default function AddLink() {
             ))}
           </Select>
           <CssTextField
-            id="outlined-multiline-flexible"
             label="Add a link name"
             fullWidth
             required
@@ -86,7 +85,6 @@ export default function AddLink() {
           />
 
           <CssTextField
-            id="outlined-multiline-flexible"
             label="Add the link to this resource"
             multiline
             fullWidth
