@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
   toolbar: {
     backgroundColor: "#333333",
     color: "#FFFFFF",
+    padding: "1rem",
   },
   toolbarTitle: {
     color: "#58A6FF",
@@ -34,7 +35,7 @@ export default function Toolbar({ selectCategory }) {
           alignItems="center"
         >
           <Typography className={classes.toolbarTitle} variant="h5">
-            Select category:
+            Select Category
           </Typography>
           {categories.map((category) => {
             return (
