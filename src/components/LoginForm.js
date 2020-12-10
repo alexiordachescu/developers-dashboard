@@ -2,8 +2,31 @@ import React, { useState } from "react";
 import { login } from "../store/user/actions";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import {
+  Button,
+  FormControl,
+  InputLabel,
+  makeStyles,
+  Paper,
+  TextField,
+} from "@material-ui/core";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    backgroundColor: "#333333",
+  },
+  formControl: {
+    width: "100%",
+    backgroundColor: "rgba(255, 255, 255, 0.3)",
+  },
+  selectEmpty: {
+    marginTop: theme.spacing(2),
+  },
+}));
 
 export default function LoginForm() {
+  const classes = useStyles();
+
   const history = useHistory();
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
@@ -16,28 +39,30 @@ export default function LoginForm() {
     setPassword("");
   };
   return (
-    <div>
-      <form onSubmit={submitLoginForm}>
-        <div>
-          <label>Email:</label>
-          <input
-            value={email}
-            type="text"
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          ></input>
-        </div>
-        <label>Password:</label>
-        <input
-          value={password}
-          type="password"
-          onChange={(e) => setPassword(e.target.value)}
+    <Paper elevation={3} className={classes.root}>
+      <FormControl variant="outlined" className={classes.formControl}>
+        <TextField
+          id="outlined-multiline-flexible"
+          label="Enter Email Address"
           required
-        ></input>
-        <div>
-          <button type="submit">Login</button>
-        </div>
-      </form>
-    </div>
+          variant="outlined"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+        />
+
+        <TextField
+          id="outlined-multiline-flexible"
+          label="Enter Email Address"
+          required
+          variant="outlined"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
+        />
+
+        <Button variant="contained" type="submit" onClick={submitLoginForm}>
+          Login
+        </Button>
+      </FormControl>
+    </Paper>
   );
 }
