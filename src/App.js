@@ -19,7 +19,6 @@ import Search from "./pages/Search";
 
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import HomePage from "./pages/HomePage";
-import { orange } from "@material-ui/core/colors";
 
 function App() {
   const dispatch = useDispatch();
