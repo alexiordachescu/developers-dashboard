@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { selectAllLinks } from "../store/links/selectors";
 import LinkCard from "../components/LinkCard";
-
+import { useHistory } from "react-router-dom";
 import { Grid } from "@material-ui/core";
 import Toolbar from "../components/Toolbar";
 
@@ -10,6 +10,7 @@ import AddLink from "../components/AddLink";
 import { selectAllCategories } from "../store/categories/selectors";
 import { makeStyles } from "@material-ui/core/styles";
 import StickyBox from "react-sticky-box/dist/esnext";
+import { selectToken } from "../store/user/selectors";
 
 const useStyles = makeStyles((theme) => ({
   gridStyle: {
@@ -18,6 +19,12 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Links = () => {
+  const userToken = useSelector(selectToken);
+  const history = useHistory();
+  if (!userToken) {
+    history.push("/login");
+  }
+
   const classes = useStyles();
   const links = useSelector(selectAllLinks);
   const categories = useSelector(selectAllCategories);

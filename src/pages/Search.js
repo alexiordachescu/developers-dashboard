@@ -8,6 +8,8 @@ import { Grid, Paper, Typography } from "@material-ui/core";
 import InputBase from "@material-ui/core/InputBase";
 import { makeStyles } from "@material-ui/core/styles";
 import SearchIcon from "@material-ui/icons/Search";
+import { selectToken } from "../store/user/selectors";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -26,11 +28,17 @@ export default function Search() {
   const dispatch = useDispatch();
   const allSnippets = useSelector(selectAllSnippets);
   const allLinks = useSelector(selectAllLinks);
+  const userToken = useSelector(selectToken);
+  const history = useHistory();
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState({
     links: [],
     snippets: [],
   });
+
+  if (!userToken) {
+    history.push("/login");
+  }
 
   useEffect(() => {
     const linkResults = allLinks.filter(

@@ -8,7 +8,11 @@ export default function ClipBoard({ code }) {
 
   return (
     <button onClick={() => handleCopy(code)}>
-      {isCopied ? <CheckIcon /> : <AssignmentIcon />}
+      {isCopied ? (
+        <CheckIcon fontSize="small" />
+      ) : (
+        <AssignmentIcon fontSize="small" />
+      )}
     </button>
   );
 }

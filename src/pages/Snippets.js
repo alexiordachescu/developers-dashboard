@@ -8,6 +8,8 @@ import { selectAllCategories } from "../store/categories/selectors";
 import AddSnippet from "../components/AddSnippet";
 import { makeStyles } from "@material-ui/core/styles";
 import StickyBox from "react-sticky-box/dist/esnext";
+import { selectToken } from "../store/user/selectors";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,9 +27,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Snippets = () => {
+  const userToken = useSelector(selectToken);
+  const history = useHistory();
   const classes = useStyles();
   const snippets = useSelector(selectAllSnippets);
   const categories = useSelector(selectAllCategories);
+  if (!userToken) {
+    history.push("/login");
+  }
 
   const [category, setCategory] = useState([]);
 
