@@ -8,7 +8,7 @@ import {
 } from "@material-ui/core";
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import { logOut } from "../store/user/actions";
 import { selectToken, selectUser } from "../store/user/selectors";
 import SearchIcon from "@material-ui/icons/Search";
@@ -37,49 +37,53 @@ const Navbar = () => {
         <Toolbar>
           <Grid container justify="space-around" alignItems="center">
             <Grid item>
-              <Link style={{ color: "white", textDecoration: "none" }} to="/">
+              <NavLink
+                style={{ color: "white", textDecoration: "none" }}
+                exact
+                to="/"
+              >
                 <Typography variant="h6">
                   Welcome to Dev's dashboard{user.name && `, ${user.name}`}!
                 </Typography>
-              </Link>
+              </NavLink>
             </Grid>
             {user.name && (
               <>
                 <Grid item>
-                  <Link
+                  <NavLink
                     style={{ color: "white", textDecoration: "none" }}
                     to="/developersSnippets"
                   >
                     <Typography variant="h6">Developers Snippets</Typography>
-                  </Link>
+                  </NavLink>
                 </Grid>
                 <Grid item>
-                  <Link
+                  <NavLink
                     style={{ color: "white", textDecoration: "none" }}
                     to="/developersLinks"
                   >
                     <Typography variant="h6">Developers Links</Typography>
-                  </Link>
+                  </NavLink>
                 </Grid>
 
                 <Grid item>
-                  <Link
+                  <NavLink
                     style={{ color: "white", textDecoration: "none" }}
                     to="/search"
                   >
                     <SearchIcon />
-                  </Link>
+                  </NavLink>
                 </Grid>
               </>
             )}
             <Grid item>
               {!token ? (
-                <Link
+                <NavLink
                   style={{ color: "white", textDecoration: "none" }}
                   to="/login"
                 >
                   <Typography variant="h6">Login</Typography>
-                </Link>
+                </NavLink>
               ) : (
                 <Button
                   style={{ color: "white" }}

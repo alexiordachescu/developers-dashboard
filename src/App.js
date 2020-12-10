@@ -52,11 +52,11 @@ function App() {
 
         <Switch>
           <Route path="/search" component={Search} />
-          <Route exact path="/developersLinks" component={Links} />
-          <Route exact path="/developersSnippets" component={Snippets} />
+          <Route path="/developersLinks" component={Links} />
+          <Route path="/developersSnippets" component={Snippets} />
           <Route path="/login" component={Login} />
           <Route path="/signUp" component={Signup} />
-          <Route path="/" component={HomePage} />
+          <Route exact path="/" component={HomePage} />
         </Switch>
       </div>{" "}
     </ThemeProvider>
