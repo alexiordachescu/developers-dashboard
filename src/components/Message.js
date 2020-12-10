@@ -8,6 +8,8 @@ import { clearLinksMessage } from "../store/links/actions";
 import { selectLinksMessage } from "../store/links/selectors";
 import { clearSnippetsMessage } from "../store/snippets/actions";
 import { selectSnippetsMessage } from "../store/snippets/selectors";
+import ClearIcon from "@material-ui/icons/Clear";
+import { Typography } from "@material-ui/core";
 
 export default function Message({ slice }) {
   const dispatch = useDispatch();
@@ -43,12 +45,15 @@ export default function Message({ slice }) {
 
   return (
     <div style={{ color: message.type === "error" ? "red" : "green" }}>
-      <p>
+      <Typography variant="subtitle1" style={{ fontSize: "1.5rem" }}>
         {message.text}{" "}
         {message.type === "error" && (
-          <button onClick={() => dispatch(clearMessage())}> X </button>
+          <button onClick={() => dispatch(clearMessage())}>
+            {" "}
+            <ClearIcon fontSize="small" />{" "}
+          </button>
         )}
-      </p>
+      </Typography>
     </div>
   );
 }

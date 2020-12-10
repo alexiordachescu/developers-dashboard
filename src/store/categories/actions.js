@@ -44,10 +44,8 @@ export const addCategory = (category) => async (dispatch, getState) => {
     dispatch(categoriesDoneLoading());
   } catch (error) {
     if (error.response?.data?.message) {
-      console.log(error.response.data.message);
       dispatch(setCategoriesMessage(error.response.data.message));
     } else {
-      console.log(error.message);
       dispatch(setCategoriesMessage(error.message));
     }
     dispatch(categoriesDoneLoading());

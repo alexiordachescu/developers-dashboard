@@ -85,7 +85,7 @@ const Navbar = () => {
                 </Link>
               ) : (
                 <Button
-                  color="inherit"
+                  style={{ color: "white" }}
                   onClick={() => {
                     history.push("/login");
                     dispatch(logOut());

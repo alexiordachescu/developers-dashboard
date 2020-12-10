@@ -18,6 +18,7 @@ import ClipBoard from "./ClipBoard";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 import RateReviewIcon from "@material-ui/icons/RateReview";
+import { CssTextField } from "./AddSnippet";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
     height: 140,
     color: "#5e35b1",
   },
-  codeStyle: { overflow: "scroll" },
+  codeStyle: { overflow: "auto" },
   textColor: { color: "#58A6FF" },
   commentsColor: { color: "#FFFFFF" },
 }));
@@ -38,15 +39,14 @@ const CodeSnippetCard = (props) => {
   const dispatch = useDispatch();
   const [editMode, setEditMode] = useState(false);
   const [editCommentMode, setEditCommentMode] = useState(false);
-  const [editText, setEditText] = useState("");
-  const [editCommentText, setEditCommentText] = useState("");
+  const [editText, setEditText] = useState(props.content);
+  const [editCommentText, setEditCommentText] = useState(props.comment);
 
   function editSnippet() {
     dispatch(editCodeSnippet(editText, props.id));
     setEditMode(false);
   }
   function editSnippetComment() {
-    console.log("snippet id", props.id);
     dispatch(editCommentSnippet(editCommentText, props.id));
     setEditCommentMode(false);
   }
@@ -58,11 +58,10 @@ const CodeSnippetCard = (props) => {
   return (
     <div>
       <Card className={classes.root}>
-        {/* <CardActionArea> */}
         <CardContent>
           <Typography
             gutterBottom
-            variant="h3"
+            variant="h5"
             component="h2"
             className={classes.textColor}
           >
@@ -105,11 +104,11 @@ const CodeSnippetCard = (props) => {
                 component="span"
                 className={classes.media}
               >
-                <TextField
-                  id="outlined-basic"
+                <CssTextField
                   label="Snippet"
                   variant="outlined"
                   multiline
+                  fullWidth
                   defaultValue={props.content}
                   onChange={(event) => setEditText(event.target.value)}
                 />
@@ -120,7 +119,6 @@ const CodeSnippetCard = (props) => {
                 onClick={() => {
                   editSnippet();
                 }}
-                style={{ zIndex: -1 }}
               >
                 save
               </Button>
@@ -138,10 +136,10 @@ const CodeSnippetCard = (props) => {
           ) : (
             <div>
               <Typography gutterBottom variant="h5" component="h2">
-                <TextField
-                  id="outlined-basic"
+                <CssTextField
                   label="Comment"
                   variant="outlined"
+                  fullWidth
                   defaultValue={props.comment}
                   onChange={(event) => setEditCommentText(event.target.value)}
                 />

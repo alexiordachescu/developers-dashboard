@@ -35,10 +35,8 @@ export const signUp = (name, email, password) => {
       dispatch(appDoneLoading());
     } catch (error) {
       if (error.response?.data?.message) {
-        console.log(error.response.data.message);
         dispatch(setAppMessage("error", error.response.data.message));
       } else {
-        console.log(error.message);
         dispatch(setAppMessage("error", error.message));
       }
       dispatch(appDoneLoading());
@@ -60,10 +58,8 @@ export const login = (email, password) => {
       dispatch(appDoneLoading());
     } catch (error) {
       if (error.response?.data?.message) {
-        console.log(error.response.data.message);
         dispatch(setAppMessage("error", error.response.data.message));
       } else {
-        console.log(error.message);
         dispatch(setAppMessage("error", error.message));
       }
       dispatch(appDoneLoading());

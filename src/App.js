@@ -19,6 +19,7 @@ import Search from "./pages/Search";
 
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
 import HomePage from "./pages/HomePage";
+import { orange } from "@material-ui/core/colors";
 
 function App() {
   const dispatch = useDispatch();
@@ -30,6 +31,14 @@ function App() {
   const theme = createMuiTheme({
     typography: {
       fontFamily: ["Chilanka"].join(","),
+    },
+    palette: {
+      primary: {
+        main: "#58A6FF",
+      },
+      secondary: {
+        main: "#800000",
+      },
     },
   });
 

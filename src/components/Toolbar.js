@@ -7,8 +7,9 @@ import Checkbox from "@material-ui/core/Checkbox";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Favorite from "@material-ui/icons/Favorite";
 import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
-import { Grid, Typography } from "@material-ui/core";
+import { Button, Grid, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core";
+import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
@@ -42,9 +43,9 @@ export default function Toolbar({ selectCategory }) {
               <Grid
                 key={category.id}
                 container
-                direction="column"
-                alignItems="stretch"
+                direction="row"
                 justify="space-between"
+                alignItems="center"
               >
                 <FormControlLabel
                   control={
@@ -57,9 +58,11 @@ export default function Toolbar({ selectCategory }) {
                   }
                   label={category.name}
                 />
+                <Button startIcon={<DeleteForeverIcon color="secondary" />} />
               </Grid>
             );
           })}
+
           <AddCategory />
         </Grid>
       </Paper>
