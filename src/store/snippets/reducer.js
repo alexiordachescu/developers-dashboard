@@ -53,6 +53,10 @@ const snippetsReducer = (state = initialState, action) => {
         ...state,
         all: newSnippets,
       };
+
+    case "LOG_OUT":
+      return initialState;
+
     default:
       return state;
   }

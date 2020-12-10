@@ -27,6 +27,9 @@ const linksReducer = (state = initialState, action) => {
     case "ADD_LINK_SUCCESS":
       return { ...state, all: [...state.all, action.payload] };
 
+    case "LOG_OUT":
+      return initialState;
+
     default:
       return state;
   }
