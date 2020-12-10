@@ -8,7 +8,7 @@ import {
   TextField,
 } from "@material-ui/core";
 import React, { useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, withStyles } from "@material-ui/core/styles";
 import { useDispatch, useSelector } from "react-redux";
 import { selectAllCategories } from "../store/categories/selectors";
 import { addSnippet } from "../store/snippets/actions";
@@ -19,13 +19,27 @@ const initialForm = {
   content: "",
   comment: "",
 };
+
+export const CssTextField = withStyles({
+  root: {
+    "& label.Mui-focused": {
+      color: "white",
+    },
+    "& .MuiInput-underline:after": {
+      borderBottomColor: "white",
+    },
+    backgroundColor: "rgba(255, 255, 255, 0.65)",
+    borderRadius: "4px",
+  },
+})(TextField);
+
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: "#333333",
+    backgroundColor: "#212121",
   },
   formControl: {
     width: "100%",
-    backgroundColor: "rgba(255, 255, 255, 0.65)",
+    backgroundColor: "#212121",
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
@@ -51,7 +65,12 @@ export default function AddSnippet() {
   return (
     <Paper elevation={3} className={classes.root}>
       <FormControl variant="outlined" className={classes.formControl}>
-        <InputLabel id="demo-simple-select-outlined-label">
+        <InputLabel
+          id="demo-simple-select-outlined-label"
+          style={{
+            color: "white",
+          }}
+        >
           Technology
         </InputLabel>
         <Select
@@ -61,6 +80,7 @@ export default function AddSnippet() {
           required
           onChange={(e) => setForm({ ...form, category: e.target.value })}
           label="Technology"
+          style={{ backgroundColor: "rgba(255, 255, 255, 0.65)" }}
         >
           {categories.map((category) => (
             <MenuItem key={category.id} value={category.name}>
@@ -69,7 +89,7 @@ export default function AddSnippet() {
           ))}
         </Select>
 
-        <TextField
+        <CssTextField
           id="outlined-multiline-flexible"
           label="Add a snippet name"
           fullWidth
@@ -80,7 +100,7 @@ export default function AddSnippet() {
           onChange={(e) => setForm({ ...form, name: e.target.value })}
         />
 
-        <TextField
+        <CssTextField
           id="outlined-multiline-flexible"
           label="Add a code snippet"
           multiline
@@ -92,7 +112,7 @@ export default function AddSnippet() {
           onChange={(e) => setForm({ ...form, content: e.target.value })}
         />
 
-        <TextField
+        <CssTextField
           id="outlined-multiline-flexible"
           label="Add a comment"
           multiline

@@ -77,6 +77,7 @@ export default function Search() {
               value={searchTerm}
               placeholder="Search"
               onChange={(e) => setSearchTerm(e.target.value)}
+              style={{ color: "white" }}
             />
             <SearchIcon />
           </Paper>
