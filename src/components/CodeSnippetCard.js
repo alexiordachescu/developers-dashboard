@@ -29,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
     height: 140,
     color: "#5e35b1",
   },
+  codeStyle: { overflow: "scroll" },
   textColor: { color: "#58A6FF" },
   commentsColor: { color: "#FFFFFF" },
 }));
@@ -85,13 +86,13 @@ const CodeSnippetCard = (props) => {
                   direction="column"
                   justify="center"
                   alignItems="stretch"
+                  className={classes.codeStyle}
                 >
                   <SyntaxHighlighter
                     language="js"
                     style={dracula}
                     children={props.content}
                     showLineNumbers={true}
-                    wrapLongLines={true}
                   />
                 </Grid>
               </Grid>

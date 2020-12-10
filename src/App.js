@@ -18,6 +18,7 @@ import MessageBox from "./components/MessageBox";
 import Search from "./pages/Search";
 
 import { ThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import HomePage from "./pages/HomePage";
 
 function App() {
   const dispatch = useDispatch();
@@ -47,6 +48,7 @@ function App() {
           <Route exact path="/developersSnippets" component={Snippets} />
           <Route path="/login" component={Login} />
           <Route path="/signUp" component={Signup} />
+          <Route path="/" component={HomePage} />
         </Switch>
       </div>{" "}
     </ThemeProvider>
