@@ -8,17 +8,18 @@ import {
   Paper,
   TextField,
 } from "@material-ui/core";
+import { CssTextField } from "./AddSnippet";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: "#333333",
+    backgroundColor: "#212121",
     width: "33%",
     minWidth: "360px",
-    margin: "auto",
+    margin: "100px auto",
   },
   formControl: {
     width: "100%",
-    backgroundColor: "rgba(255, 255, 255, 0.65)",
+    backgroundColor: "#212121",
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
@@ -45,7 +46,7 @@ export default function SignupForm() {
   return (
     <Paper elevation={3} className={classes.root}>
       <FormControl variant="outlined" className={classes.formControl}>
-        <TextField
+        <CssTextField
           id="outlined-multiline-flexible"
           label="Enter Fullname"
           required
@@ -54,7 +55,7 @@ export default function SignupForm() {
           onChange={(e) => setName(e.target.value)}
         />
 
-        <TextField
+        <CssTextField
           id="outlined-multiline-flexible"
           label="Enter Email Address"
           required
@@ -64,7 +65,7 @@ export default function SignupForm() {
           onChange={(e) => setEmail(e.target.value)}
         />
 
-        <TextField
+        <CssTextField
           id="outlined-multiline-flexible"
           label="Enter Password"
           required
@@ -76,7 +77,7 @@ export default function SignupForm() {
         />
 
         <Button variant="contained" type="submit" onClick={submitSignupForm}>
-          Login
+          Signup
         </Button>
       </FormControl>
     </Paper>

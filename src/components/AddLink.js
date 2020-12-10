@@ -12,6 +12,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectAllCategories } from "../store/categories/selectors";
 import { addLink } from "../store/links/actions";
+import { CssTextField } from "./AddSnippet";
 
 const initialForm = {
   category: "",
@@ -21,14 +22,14 @@ const initialForm = {
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: "#333333",
+    backgroundColor: "#212121",
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
   },
   form: {
     width: "100%",
-    backgroundColor: "rgba(255, 255, 255, 0.65)",
+    backgroundColor: "#212121",
   },
   inputSpacing: {
     marginTop: "1rem",
@@ -52,7 +53,10 @@ export default function AddLink() {
   return (
     <Paper elevation={3} className={classes.root}>
       <FormControl variant="outlined" className={classes.form}>
-        <InputLabel id="demo-simple-select-outlined-label">
+        <InputLabel
+          id="demo-simple-select-outlined-label"
+          style={{ color: "white" }}
+        >
           Technology
         </InputLabel>
         <Select
@@ -62,6 +66,7 @@ export default function AddLink() {
           required
           onChange={(e) => setForm({ ...form, category: e.target.value })}
           label="Choose Technology"
+          style={{ backgroundColor: "rgba(255, 255, 255, 0.65)" }}
         >
           {categories.map((category) => (
             <MenuItem key={category.id} value={category.name}>
@@ -69,7 +74,7 @@ export default function AddLink() {
             </MenuItem>
           ))}
         </Select>
-        <TextField
+        <CssTextField
           id="outlined-multiline-flexible"
           label="Add a link name"
           fullWidth
@@ -80,7 +85,7 @@ export default function AddLink() {
           onChange={(e) => setForm({ ...form, name: e.target.value })}
         />
 
-        <TextField
+        <CssTextField
           id="outlined-multiline-flexible"
           label="Add the link to this resource"
           multiline
