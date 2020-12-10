@@ -9,7 +9,6 @@ import {
 } from "@material-ui/core";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { showMessageWithTimeout } from "../store/appState/actions";
 import { selectAllCategories } from "../store/categories/selectors";
 import { addLink } from "../store/links/actions";
 import { CssTextField } from "./AddSnippet";
@@ -43,12 +42,6 @@ export default function AddLink() {
   const [form, setForm] = useState(initialForm);
 
   function submitForm(e) {
-    if (!form.category) {
-      dispatch(
-        showMessageWithTimeout("error", "Please choose a technology!", 4500)
-      );
-      return;
-    }
     e.preventDefault();
     dispatch(addLink(form));
     setForm(initialForm);
@@ -58,55 +51,55 @@ export default function AddLink() {
 
   return (
     <Paper elevation={3} className={classes.root}>
-      <FormControl variant="outlined" className={classes.form}>
-        <InputLabel
-          id="demo-simple-select-outlined-label"
-          style={{ color: "white" }}
-        >
-          Technology
-        </InputLabel>
-        <Select
-          labelId="demo-simple-select-outlined-label"
-          id="demo-simple-select-outlined"
-          value={form.category}
-          required
-          onChange={(e) => setForm({ ...form, category: e.target.value })}
-          label="Choose Technology"
-          style={{ backgroundColor: "rgba(255, 255, 255, 0.65)" }}
-        >
-          {categories.map((category) => (
-            <MenuItem key={category.id} value={category.name}>
-              {category.name}
-            </MenuItem>
-          ))}
-        </Select>
-        <CssTextField
-          id="outlined-multiline-flexible"
-          label="Add a link name"
-          fullWidth
-          required
-          variant="outlined"
-          value={form.name}
-          className={classes.inputSpacing}
-          onChange={(e) => setForm({ ...form, name: e.target.value })}
-        />
+      <form onSubmit={submitForm}>
+        <FormControl variant="outlined" className={classes.form}>
+          <InputLabel
+            id="demo-simple-select-outlined-label"
+            style={{ color: "white" }}
+          >
+            Technology
+          </InputLabel>
+          <Select
+            labelId="demo-simple-select-outlined-label"
+            id="demo-simple-select-outlined"
+            value={form.category}
+            required
+            onChange={(e) => setForm({ ...form, category: e.target.value })}
+            label="Choose Technology"
+            style={{ backgroundColor: "rgba(255, 255, 255, 0.65)" }}
+          >
+            {categories.map((category) => (
+              <MenuItem key={category.id} value={category.name}>
+                {category.name}
+              </MenuItem>
+            ))}
+          </Select>
+          <CssTextField
+            label="Add a link name"
+            fullWidth
+            required
+            variant="outlined"
+            value={form.name}
+            className={classes.inputSpacing}
+            onChange={(e) => setForm({ ...form, name: e.target.value })}
+          />
 
-        <CssTextField
-          id="outlined-multiline-flexible"
-          label="Add the link to this resource"
-          multiline
-          fullWidth
-          required
-          variant="outlined"
-          value={form.content}
-          className={classes.inputSpacing}
-          onChange={(e) => setForm({ ...form, content: e.target.value })}
-        />
+          <CssTextField
+            label="Add the link to this resource"
+            multiline
+            fullWidth
+            required
+            variant="outlined"
+            value={form.content}
+            className={classes.inputSpacing}
+            onChange={(e) => setForm({ ...form, content: e.target.value })}
+          />
 
-        <Button variant="contained" type="submit" onClick={submitForm}>
-          Add this link!
-        </Button>
-      </FormControl>
+          <Button variant="contained" type="submit">
+            Add this link!
+          </Button>
+        </FormControl>
+      </form>
     </Paper>
   );
 }

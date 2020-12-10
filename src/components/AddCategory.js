@@ -23,7 +23,7 @@ export default function AddCategory() {
   }
 
   return (
-    <>
+    <form onSubmit={submitForm}>
       <CssTextField
         id="addCategory"
         label="Add Category"
@@ -31,11 +31,12 @@ export default function AddCategory() {
         value={category}
         onChange={(e) => setCategory(e.target.value)}
         className={classes.toolbar}
+        required
       />
 
-      <Button variant="contained" type="submit" onClick={submitForm}>
+      <Button variant="contained" type="submit">
         Add
       </Button>
-    </>
+    </form>
   );
 }

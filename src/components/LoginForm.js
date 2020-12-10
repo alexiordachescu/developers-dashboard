@@ -39,29 +39,32 @@ export default function LoginForm() {
   };
   return (
     <Paper elevation={3} className={classes.root}>
-      <FormControl variant="outlined" className={classes.formControl}>
-        <CssTextField
-          label="Enter Email Address"
-          required
-          variant="outlined"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+      <form onSubmit={submitLoginForm}>
+        <FormControl variant="outlined" className={classes.formControl}>
+          <CssTextField
+            label="Enter Email Address"
+            type="email"
+            required
+            variant="outlined"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+          />
 
-        <CssTextField
-          label="Enter Password"
-          required
-          variant="outlined"
-          type="password"
-          value={password}
-          className={classes.inputSpacing}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+          <CssTextField
+            label="Enter Password"
+            required
+            variant="outlined"
+            type="password"
+            value={password}
+            className={classes.inputSpacing}
+            onChange={(e) => setPassword(e.target.value)}
+          />
 
-        <Button variant="contained" type="submit" onClick={submitLoginForm}>
-          Login
-        </Button>
-      </FormControl>
+          <Button variant="contained" type="submit">
+            Login
+          </Button>
+        </FormControl>
+      </form>
     </Paper>
   );
 }

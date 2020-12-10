@@ -1,7 +1,6 @@
 import {
   AppBar,
   Button,
-  FormControl,
   Grid,
   makeStyles,
   Toolbar,
@@ -9,7 +8,7 @@ import {
 } from "@material-ui/core";
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useHistory } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import { logOut } from "../store/user/actions";
 import { selectToken, selectUser } from "../store/user/selectors";
 import SearchIcon from "@material-ui/icons/Search";
@@ -38,51 +37,53 @@ const Navbar = () => {
         <Toolbar>
           <Grid container justify="space-around" alignItems="center">
             <Grid item>
-              <Link style={{ color: "white", textDecoration: "none" }} to="/">
-                {user.name ? (
-                  <Typography variant="h6">
-                    Welcome to Dev's dashboard, {user.name}!
-                  </Typography>
-                ) : (
-                  <Typography variant="h6">
-                    Welcome to Dev's dashboard!
-                  </Typography>
-                )}
-              </Link>
-            </Grid>
-            <Grid item>
-              <Link
+              <NavLink
                 style={{ color: "white", textDecoration: "none" }}
-                to="/developersSnippets"
+                exact
+                to="/"
               >
-                <Typography variant="h6">Developers Snippets</Typography>
-              </Link>
+                <Typography variant="h6">
+                  Welcome to Dev's dashboard{user.name && `, ${user.name}`}!
+                </Typography>
+              </NavLink>
             </Grid>
-            <Grid item>
-              <Link
-                style={{ color: "white", textDecoration: "none" }}
-                to="/developersLinks"
-              >
-                <Typography variant="h6">Developers Links</Typography>
-              </Link>
-            </Grid>
+            {user.name && (
+              <>
+                <Grid item>
+                  <NavLink
+                    style={{ color: "white", textDecoration: "none" }}
+                    to="/developersSnippets"
+                  >
+                    <Typography variant="h6">Developers Snippets</Typography>
+                  </NavLink>
+                </Grid>
+                <Grid item>
+                  <NavLink
+                    style={{ color: "white", textDecoration: "none" }}
+                    to="/developersLinks"
+                  >
+                    <Typography variant="h6">Developers Links</Typography>
+                  </NavLink>
+                </Grid>
 
-            <Grid item>
-              <Link
-                style={{ color: "white", textDecoration: "none" }}
-                to="/search"
-              >
-                <SearchIcon />
-              </Link>
-            </Grid>
+                <Grid item>
+                  <NavLink
+                    style={{ color: "white", textDecoration: "none" }}
+                    to="/search"
+                  >
+                    <SearchIcon />
+                  </NavLink>
+                </Grid>
+              </>
+            )}
             <Grid item>
               {!token ? (
-                <Link
+                <NavLink
                   style={{ color: "white", textDecoration: "none" }}
                   to="/login"
                 >
                   <Typography variant="h6">Login</Typography>
-                </Link>
+                </NavLink>
               ) : (
                 <Button
                   style={{ color: "white" }}

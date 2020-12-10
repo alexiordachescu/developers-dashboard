@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import { selectAllLinks } from "../store/links/selectors";
 import LinkCard from "../components/LinkCard";
-import { useHistory } from "react-router-dom";
 import { Grid, Typography } from "@material-ui/core";
 import Toolbar from "../components/Toolbar";
 
@@ -20,16 +19,12 @@ const useStyles = makeStyles((theme) => ({
 
 const Links = () => {
   const userToken = useSelector(selectToken);
-  const history = useHistory();
-  if (!userToken) {
-    history.push("/login");
-  }
-
   const classes = useStyles();
   const links = useSelector(selectAllLinks);
   const categories = useSelector(selectAllCategories);
-
   const [category, setCategory] = useState([]);
+
+  if (!userToken) return null;
 
   const selectCategory = (id) => {
     let selectedCategory = id;
@@ -74,23 +69,21 @@ const Links = () => {
           })}
       </Grid>
       <Grid item xs={12} lg={4}>
-        {categories.length !== 0 && (
-          <StickyBox offsetTop={90} offsetBottom={20}>
-            <AddLink />
-          </StickyBox>
-        )}
+        <StickyBox offsetTop={90} offsetBottom={20}>
+          <AddLink />
+        </StickyBox>
       </Grid>
 
-      <Grid
-        item
-        container
-        direction="row"
-        justify="center"
-        alignItems="center"
-        xs={12}
-        lg={12}
-      >
-        {categories.length === 0 && (
+      {categories.length === 0 && (
+        <Grid
+          item
+          container
+          direction="row"
+          justify="center"
+          alignItems="center"
+          xs={12}
+          lg={12}
+        >
           <Typography
             variant="h5"
             style={{ color: "white", width: "66%", margin: "20px auto" }}
@@ -98,8 +91,8 @@ const Links = () => {
             Please use the toolbar to add new categories so you can add your own
             links to them
           </Typography>
-        )}
-      </Grid>
+        </Grid>
+      )}
     </Grid>
   );
 };
