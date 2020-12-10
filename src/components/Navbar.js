@@ -1,6 +1,7 @@
 import {
   AppBar,
   Button,
+  FormControl,
   Grid,
   makeStyles,
   Toolbar,
@@ -18,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#333333",
     marginBottom: "1.5rem",
     overflow: "hidden",
-    zIndex: 500,
+    zIndex: 1 + "!important",
     opacity: 1,
   },
 }));

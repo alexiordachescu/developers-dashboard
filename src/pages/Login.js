@@ -18,7 +18,7 @@ export default function Login() {
     <div>
       <LoginForm />
 
-      <Link style={{ color: "blue", textDecoration: "none" }} to="/signUp">
+      <Link style={{ color: "white", textDecoration: "none" }} to="/signUp">
         Please use this link to create an account!
       </Link>
     </div>

@@ -35,7 +35,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <div className="App">
-        <StickyBox offsetTop={0} offsetBottom={20}>
+        <StickyBox offsetTop={0} offsetBottom={20} style={{ zIndex: 99 }}>
           <Navbar />
         </StickyBox>
 

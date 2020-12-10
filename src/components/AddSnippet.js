@@ -25,10 +25,13 @@ const useStyles = makeStyles((theme) => ({
   },
   formControl: {
     width: "100%",
-    backgroundColor: "rgba(255, 255, 255, 0.3)",
+    backgroundColor: "rgba(255, 255, 255, 0.65)",
   },
   selectEmpty: {
     marginTop: theme.spacing(2),
+  },
+  inputSpacing: {
+    marginTop: "1rem",
   },
 }));
 export default function AddSnippet() {
@@ -73,6 +76,7 @@ export default function AddSnippet() {
           required
           variant="outlined"
           value={form.name}
+          className={classes.inputSpacing}
           onChange={(e) => setForm({ ...form, name: e.target.value })}
         />
 
@@ -84,6 +88,7 @@ export default function AddSnippet() {
           required
           variant="outlined"
           value={form.content}
+          className={classes.inputSpacing}
           onChange={(e) => setForm({ ...form, content: e.target.value })}
         />
 
@@ -94,6 +99,7 @@ export default function AddSnippet() {
           fullWidth
           variant="outlined"
           value={form.comment}
+          className={classes.inputSpacing}
           onChange={(e) => setForm({ ...form, comment: e.target.value })}
         />
 
