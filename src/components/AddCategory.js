@@ -32,6 +32,9 @@ export default function AddCategory() {
         onChange={(e) => setCategory(e.target.value)}
         className={classes.toolbar}
         required
+        inputProps={{
+          maxLength: 255,
+        }}
       />
 
       <Button variant="contained" type="submit">

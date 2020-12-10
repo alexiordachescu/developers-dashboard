@@ -47,6 +47,9 @@ export default function SignupForm() {
             variant="outlined"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            inputProps={{
+              maxLength: 255,
+            }}
           />
 
           <CssTextField
@@ -57,6 +60,9 @@ export default function SignupForm() {
             value={email}
             className={classes.inputSpacing}
             onChange={(e) => setEmail(e.target.value)}
+            inputProps={{
+              maxLength: 255,
+            }}
           />
 
           <CssTextField
@@ -67,6 +73,9 @@ export default function SignupForm() {
             type="password"
             className={classes.inputSpacing}
             onChange={(e) => setPassword(e.target.value)}
+            inputProps={{
+              maxLength: 255,
+            }}
           />
 
           <Button variant="contained" type="submit">

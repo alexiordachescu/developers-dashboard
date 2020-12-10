@@ -82,6 +82,9 @@ export default function AddLink() {
             value={form.name}
             className={classes.inputSpacing}
             onChange={(e) => setForm({ ...form, name: e.target.value })}
+            inputProps={{
+              maxLength: 255,
+            }}
           />
 
           <CssTextField
