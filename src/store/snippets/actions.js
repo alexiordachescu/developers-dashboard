@@ -44,13 +44,11 @@ const snippetDeleteSuccess = (snippetId) => {
 };
 
 export const editCodeSnippet = (content, id) => {
-  // console.log("i am content and id", content, id);
   return async (dispatch, getState) => {
     const token = selectToken(getState());
     if (token === null) return;
     dispatch(snippetsLoading());
     try {
-      // console.log("i got here");
       const response = await axios.patch(
         `${apiUrl}/snippets`,
 
@@ -59,16 +57,14 @@ export const editCodeSnippet = (content, id) => {
           headers: { Authorization: `Bearer ${token} ` },
         }
       );
-      // console.log("i am response.data", response.data);
+
       // token is still valid
       dispatch(editSnippetSuccess(response.data));
       dispatch(snippetsDoneLoading());
     } catch (error) {
       if (error.response?.data?.message) {
-        console.log(error.response.data.message);
         dispatch(setSnippetsMessage(error.response.data.message));
       } else {
-        console.log(error.message);
         dispatch(setSnippetsMessage(error.message));
       }
       dispatch(snippetsDoneLoading());
@@ -76,14 +72,11 @@ export const editCodeSnippet = (content, id) => {
   };
 };
 export const editCommentSnippet = (comment, id) => {
-  // console.log("i am content and id", comment, id);
   return async (dispatch, getState) => {
     const token = selectToken(getState());
     if (token === null) return;
     dispatch(snippetsLoading());
     try {
-      // console.log("i got here");
-
       const response = await axios.patch(
         `${apiUrl}/snippets/comments`,
 
@@ -92,16 +85,14 @@ export const editCommentSnippet = (comment, id) => {
           headers: { Authorization: `Bearer ${token} ` },
         }
       );
-      // console.log("i am response.data", response.data);
+
       // token is still valid
       dispatch(editSnippetCommentSuccess(response.data));
       dispatch(snippetsDoneLoading());
     } catch (error) {
       if (error.response?.data?.message) {
-        console.log(error.response.data.message);
         dispatch(setSnippetsMessage(error.response.data.message));
       } else {
-        console.log(error.message);
         dispatch(setSnippetsMessage(error.message));
       }
       dispatch(snippetsDoneLoading());
@@ -137,10 +128,8 @@ export const addSnippet = (form) => {
       dispatch(snippetsDoneLoading());
     } catch (error) {
       if (error.response?.data?.message) {
-        console.log(error.response.data.message);
         dispatch(setSnippetsMessage(error.response.data.message));
       } else {
-        console.log(error.message);
         dispatch(setSnippetsMessage(error.message));
       }
       dispatch(snippetsDoneLoading());
@@ -149,7 +138,6 @@ export const addSnippet = (form) => {
 };
 
 export const deleteSnippet = (id) => {
-  // console.log("i am id from single snippet", id);
   return async (dispatch, getState) => {
     const token = selectToken(getState());
     if (token === null) return;
@@ -165,15 +153,12 @@ export const deleteSnippet = (id) => {
         }
       );
 
-      // console.log("snippet deleted?", response.data);
       dispatch(snippetDeleteSuccess(response.data));
       dispatch(snippetsDoneLoading());
     } catch (error) {
       if (error.response?.data?.message) {
-        console.log(error.response.data.message);
         dispatch(setSnippetsMessage(error.response.data.message));
       } else {
-        console.log(error.message);
         dispatch(setSnippetsMessage(error.message));
       }
       dispatch(snippetsDoneLoading());

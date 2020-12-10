@@ -10,6 +10,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import StickyBox from "react-sticky-box/dist/esnext";
 import { selectToken } from "../store/user/selectors";
 import { useHistory } from "react-router-dom";
+import { Typography } from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
   gridStyle: {
     padding: "0 15px 0 15px",
+    marginBottom: "10px",
   },
 }));
 
@@ -49,7 +51,7 @@ const Snippets = () => {
 
   return (
     <Grid container>
-      <Grid item xs={12} md={2} lg={2}>
+      <Grid item xs={12} md={2} lg={2} style={{ marginBottom: "10px" }}>
         <StickyBox offsetTop={90} offsetBottom={20}>
           <Toolbar selectCategory={selectCategory} />
         </StickyBox>
@@ -86,14 +88,28 @@ const Snippets = () => {
           })}
       </Grid>
       <Grid item xs={12} md={12} lg={4}>
-        {categories.length === 0 ? (
-          <div>
-            <p>Please add a new category before adding a code snippet</p>
-          </div>
-        ) : (
+        {categories.length !== 0 && (
           <StickyBox offsetTop={90} offsetBottom={20}>
             <AddSnippet />
           </StickyBox>
+        )}
+      </Grid>
+      <Grid
+        item
+        direction="row"
+        justify="center"
+        alignItems="center"
+        xs={12}
+        lg={12}
+      >
+        {categories.length === 0 && (
+          <Typography
+            variant="h5"
+            style={{ color: "white", width: "66%", margin: "20px auto" }}
+          >
+            Please use the toolbar to add new categories so you can add your own
+            snippets to them
+          </Typography>
         )}
       </Grid>
     </Grid>

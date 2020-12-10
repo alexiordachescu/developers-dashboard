@@ -1,4 +1,4 @@
-import { Button, TextField } from "@material-ui/core";
+import { Button } from "@material-ui/core";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addCategory } from "../store/categories/actions";

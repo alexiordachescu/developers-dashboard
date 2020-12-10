@@ -1,15 +1,8 @@
 import React, { useState } from "react";
 import { login } from "../store/user/actions";
 import { useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
-import {
-  Button,
-  FormControl,
-  InputLabel,
-  makeStyles,
-  Paper,
-  TextField,
-} from "@material-ui/core";
+
+import { Button, FormControl, makeStyles, Paper } from "@material-ui/core";
 import { CssTextField } from "./AddSnippet";
 
 const useStyles = makeStyles((theme) => ({
@@ -34,7 +27,6 @@ const useStyles = makeStyles((theme) => ({
 export default function LoginForm() {
   const classes = useStyles();
 
-  const history = useHistory();
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -49,7 +41,6 @@ export default function LoginForm() {
     <Paper elevation={3} className={classes.root}>
       <FormControl variant="outlined" className={classes.formControl}>
         <CssTextField
-          id="outlined-multiline-flexible"
           label="Enter Email Address"
           required
           variant="outlined"
@@ -58,7 +49,6 @@ export default function LoginForm() {
         />
 
         <CssTextField
-          id="outlined-multiline-flexible"
           label="Enter Password"
           required
           variant="outlined"

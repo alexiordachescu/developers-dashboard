@@ -46,15 +46,13 @@ export const onLinkDelete = (id) => {
           headers: { Authorization: `Bearer ${token} ` },
         }
       );
-      console.log(response.data);
+
       dispatch(linkDeleteSuccess(response.data));
       dispatch(linksDoneLoading());
     } catch (error) {
       if (error.response?.data?.message) {
-        console.log(error.response.data.message);
         dispatch(setLinksMessage(error.response.data.message));
       } else {
-        console.log(error.message);
         dispatch(setLinksMessage(error.message));
       }
       dispatch(linksDoneLoading());
@@ -89,10 +87,8 @@ export const addLink = (form) => {
       dispatch(linksDoneLoading());
     } catch (error) {
       if (error.response?.data?.message) {
-        console.log(error.response.data.message);
         dispatch(setLinksMessage(error.response.data.message));
       } else {
-        console.log(error.message);
         dispatch(setLinksMessage(error.message));
       }
       dispatch(linksDoneLoading());

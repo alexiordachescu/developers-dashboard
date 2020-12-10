@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import { selectAllSnippets } from "../store/snippets/selectors";
 import { selectAllLinks } from "../store/links/selectors";
 import LinkCard from "../components/LinkCard";
@@ -19,13 +19,13 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "space-evenly",
     alignItems: "center",
   },
-  textColor: { color: "#FFFFFF" },
+  textColor: { color: "#FFFFFF", marginTop: "1rem" },
   renderMargin: { marginTop: "1rem" },
 }));
 
 export default function Search() {
   const classes = useStyles();
-  const dispatch = useDispatch();
+
   const allSnippets = useSelector(selectAllSnippets);
   const allLinks = useSelector(selectAllLinks);
   const userToken = useSelector(selectToken);
@@ -99,9 +99,8 @@ export default function Search() {
               </Typography>
               <div>
                 {searchResults.links.map((link) => (
-                  <Grid item className={classes.renderMargin}>
+                  <Grid item key={link.id} className={classes.renderMargin}>
                     <LinkCard
-                      key={link.id}
                       id={link.id}
                       name={link.name}
                       content={link.content}
@@ -120,9 +119,8 @@ export default function Search() {
               </Typography>
               <div>
                 {searchResults.snippets.map((snippet) => (
-                  <Grid item className={classes.renderMargin}>
+                  <Grid item key={snippet.id} className={classes.renderMargin}>
                     <CodeSnippetCard
-                      key={snippet.id}
                       name={snippet.name}
                       content={snippet.content}
                       comment={snippet.comment}

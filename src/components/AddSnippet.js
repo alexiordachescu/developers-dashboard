@@ -12,6 +12,7 @@ import { makeStyles, withStyles } from "@material-ui/core/styles";
 import { useDispatch, useSelector } from "react-redux";
 import { selectAllCategories } from "../store/categories/selectors";
 import { addSnippet } from "../store/snippets/actions";
+import { showMessageWithTimeout } from "../store/appState/actions";
 
 const initialForm = {
   category: "",
@@ -55,6 +56,12 @@ export default function AddSnippet() {
   const [form, setForm] = useState(initialForm);
 
   function submitForm(e) {
+    if (!form.category) {
+      dispatch(
+        showMessageWithTimeout("error", "Please choose a technology!", 4500)
+      );
+      return;
+    }
     e.preventDefault();
     dispatch(addSnippet(form));
     setForm(initialForm);

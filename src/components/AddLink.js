@@ -6,10 +6,10 @@ import {
   MenuItem,
   Paper,
   Select,
-  TextField,
 } from "@material-ui/core";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { showMessageWithTimeout } from "../store/appState/actions";
 import { selectAllCategories } from "../store/categories/selectors";
 import { addLink } from "../store/links/actions";
 import { CssTextField } from "./AddSnippet";
@@ -43,6 +43,12 @@ export default function AddLink() {
   const [form, setForm] = useState(initialForm);
 
   function submitForm(e) {
+    if (!form.category) {
+      dispatch(
+        showMessageWithTimeout("error", "Please choose a technology!", 4500)
+      );
+      return;
+    }
     e.preventDefault();
     dispatch(addLink(form));
     setForm(initialForm);

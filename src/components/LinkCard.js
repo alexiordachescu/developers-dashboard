@@ -13,9 +13,15 @@ import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
 
 const useStyles = makeStyles({
   root: {
-    // width: "20rem",
+    // display: "flex",
+
     // height: "10rem",
-    backgroundColor: "#333333",
+    "& > *": {
+      backgroundColor: "#333333",
+      // width: "20rem",
+      overflow: "auto",
+      wordBreak: "break-all",
+    },
   },
   media: {
     height: 140,
