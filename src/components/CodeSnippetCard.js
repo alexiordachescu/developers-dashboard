@@ -13,7 +13,6 @@ import {
   deleteSnippet,
   editCommentSnippet,
 } from "../store/snippets/actions";
-import TextField from "@material-ui/core/TextField";
 import ClipBoard from "./ClipBoard";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
@@ -172,7 +171,7 @@ const CodeSnippetCard = (props) => {
               }}
               endIcon={<RateReviewIcon />}
             >
-              edit comment
+              {editCommentMode ? "cancel" : "edit comment"}
             </Button>
             <Button
               size="small"
@@ -185,7 +184,7 @@ const CodeSnippetCard = (props) => {
               }}
               endIcon={<EditIcon />}
             >
-              edit snippet
+              {editMode ? "cancel" : "edit snippet"}
             </Button>
             <Button
               size="small"
