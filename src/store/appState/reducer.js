@@ -24,6 +24,9 @@ const appStateReducer = (state = initialState, action) => {
     case CLEAR_MESSAGE:
       return { ...state, message: null };
 
+    case "LOG_OUT":
+      return initialState;
+
     default:
       return state;
   }

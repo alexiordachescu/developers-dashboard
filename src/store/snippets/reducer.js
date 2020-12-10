@@ -44,8 +44,6 @@ const snippetsReducer = (state = initialState, action) => {
       return { ...state, all: [...state.all, action.payload] };
 
     case "SNIPPET_DELETE_SUCCESS":
-      // console.log("payload", action.payload);
-      // console.log("i am state before,", state.details);
       const snippetId = action.payload;
       const newSnippets = state.all.filter((s) => {
         return s.id !== snippetId;
@@ -55,6 +53,10 @@ const snippetsReducer = (state = initialState, action) => {
         ...state,
         all: newSnippets,
       };
+
+    case "LOG_OUT":
+      return initialState;
+
     default:
       return state;
   }
