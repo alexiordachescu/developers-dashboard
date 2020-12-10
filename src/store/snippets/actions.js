@@ -43,6 +43,13 @@ const snippetDeleteSuccess = (snippetId) => {
   };
 };
 
+export const deleteCategorySnippets = (snippetIds) => {
+  return {
+    type: "DELETE_CATEGORY_SNIPPETS",
+    payload: snippetIds,
+  };
+};
+
 export const editCodeSnippet = (content, id) => {
   return async (dispatch, getState) => {
     const token = selectToken(getState());

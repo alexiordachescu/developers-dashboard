@@ -24,6 +24,13 @@ const linkDeleteSuccess = (link) => {
   };
 };
 
+export const deleteCategoryLinks = (linkIds) => {
+  return {
+    type: "DELETE_CATEGORY_LINKS",
+    payload: linkIds,
+  };
+};
+
 const addLinkSuccess = (link) => {
   return {
     type: "ADD_LINK_SUCCESS",

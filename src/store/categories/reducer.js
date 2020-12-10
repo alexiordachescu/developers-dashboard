@@ -14,6 +14,12 @@ const categoriesReducer = (state = initialState, action) => {
     case "CLEAR_CATEGORIES_MESSAGE":
       return { ...state, message: null };
 
+    case "CATEGORY_DELETE_SUCCESS":
+      return {
+        ...state,
+        all: state.all.filter((category) => category.id !== action.payload),
+      };
+
     case "ADD_CATEGORY":
       return { ...state, all: [...state.all, action.payload] };
 

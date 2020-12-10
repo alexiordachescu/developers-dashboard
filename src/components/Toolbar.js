@@ -1,5 +1,5 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { selectAllCategories } from "../store/categories/selectors";
 import Paper from "@material-ui/core/Paper";
 import AddCategory from "./AddCategory";
@@ -10,6 +10,7 @@ import FavoriteBorder from "@material-ui/icons/FavoriteBorder";
 import { Button, Grid, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core";
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever";
+import { deleteCategory } from "../store/categories/actions";
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
@@ -23,6 +24,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Toolbar({ selectCategory }) {
+  const dispatch = useDispatch();
   const categories = useSelector(selectAllCategories);
   const classes = useStyles();
 
@@ -58,7 +60,15 @@ export default function Toolbar({ selectCategory }) {
                   }
                   label={category.name}
                 />
-                <Button startIcon={<DeleteForeverIcon color="secondary" />} />
+                <Button
+                  startIcon={<DeleteForeverIcon color="secondary" />}
+                  onClick={() => {
+                    const confirm = window.confirm(
+                      "Are you sure? Deleting this category will also remove its links and snippets"
+                    );
+                    if (confirm) dispatch(deleteCategory(category.id));
+                  }}
+                />
               </Grid>
             );
           })}
