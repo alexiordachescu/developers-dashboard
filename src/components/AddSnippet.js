@@ -12,7 +12,6 @@ import { makeStyles, withStyles } from "@material-ui/core/styles";
 import { useDispatch, useSelector } from "react-redux";
 import { selectAllCategories } from "../store/categories/selectors";
 import { addSnippet } from "../store/snippets/actions";
-import { showMessageWithTimeout } from "../store/appState/actions";
 
 const initialForm = {
   category: "",
@@ -56,12 +55,6 @@ export default function AddSnippet() {
   const [form, setForm] = useState(initialForm);
 
   function submitForm(e) {
-    if (!form.category) {
-      dispatch(
-        showMessageWithTimeout("error", "Please choose a technology!", 4500)
-      );
-      return;
-    }
     e.preventDefault();
     dispatch(addSnippet(form));
     setForm(initialForm);
@@ -71,69 +64,71 @@ export default function AddSnippet() {
 
   return (
     <Paper elevation={3} className={classes.root}>
-      <FormControl variant="outlined" className={classes.formControl}>
-        <InputLabel
-          id="demo-simple-select-outlined-label"
-          style={{
-            color: "white",
-          }}
-        >
-          Technology
-        </InputLabel>
-        <Select
-          labelId="demo-simple-select-outlined-label"
-          id="demo-simple-select-outlined"
-          value={form.category}
-          required
-          onChange={(e) => setForm({ ...form, category: e.target.value })}
-          label="Technology"
-          style={{ backgroundColor: "rgba(255, 255, 255, 0.65)" }}
-        >
-          {categories.map((category) => (
-            <MenuItem key={category.id} value={category.name}>
-              {category.name}
-            </MenuItem>
-          ))}
-        </Select>
+      <form onSubmit={submitForm}>
+        <FormControl variant="outlined" className={classes.formControl}>
+          <InputLabel
+            id="demo-simple-select-outlined-label"
+            style={{
+              color: "white",
+            }}
+          >
+            Technology
+          </InputLabel>
+          <Select
+            labelId="demo-simple-select-outlined-label"
+            id="demo-simple-select-outlined"
+            value={form.category}
+            required
+            onChange={(e) => setForm({ ...form, category: e.target.value })}
+            label="Technology"
+            style={{ backgroundColor: "rgba(255, 255, 255, 0.65)" }}
+          >
+            {categories.map((category) => (
+              <MenuItem key={category.id} value={category.name}>
+                {category.name}
+              </MenuItem>
+            ))}
+          </Select>
 
-        <CssTextField
-          id="outlined-multiline-flexible"
-          label="Add a snippet name"
-          fullWidth
-          required
-          variant="outlined"
-          value={form.name}
-          className={classes.inputSpacing}
-          onChange={(e) => setForm({ ...form, name: e.target.value })}
-        />
+          <CssTextField
+            id="outlined-multiline-flexible"
+            label="Add a snippet name"
+            fullWidth
+            required
+            variant="outlined"
+            value={form.name}
+            className={classes.inputSpacing}
+            onChange={(e) => setForm({ ...form, name: e.target.value })}
+          />
 
-        <CssTextField
-          id="outlined-multiline-flexible"
-          label="Add a code snippet"
-          multiline
-          fullWidth
-          required
-          variant="outlined"
-          value={form.content}
-          className={classes.inputSpacing}
-          onChange={(e) => setForm({ ...form, content: e.target.value })}
-        />
+          <CssTextField
+            id="outlined-multiline-flexible"
+            label="Add a code snippet"
+            multiline
+            fullWidth
+            required
+            variant="outlined"
+            value={form.content}
+            className={classes.inputSpacing}
+            onChange={(e) => setForm({ ...form, content: e.target.value })}
+          />
 
-        <CssTextField
-          id="outlined-multiline-flexible"
-          label="Add a comment"
-          multiline
-          fullWidth
-          variant="outlined"
-          value={form.comment}
-          className={classes.inputSpacing}
-          onChange={(e) => setForm({ ...form, comment: e.target.value })}
-        />
+          <CssTextField
+            id="outlined-multiline-flexible"
+            label="Add a comment"
+            multiline
+            fullWidth
+            variant="outlined"
+            value={form.comment}
+            className={classes.inputSpacing}
+            onChange={(e) => setForm({ ...form, comment: e.target.value })}
+          />
 
-        <Button variant="contained" type="submit" onClick={submitForm}>
-          Add this snippet!
-        </Button>
-      </FormControl>
+          <Button variant="contained" type="submit">
+            Add this snippet!
+          </Button>
+        </FormControl>
+      </form>
     </Paper>
   );
 }

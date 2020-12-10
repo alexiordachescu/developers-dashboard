@@ -1,13 +1,7 @@
 import React, { useState } from "react";
 import { signUp } from "../store/user/actions";
 import { useDispatch } from "react-redux";
-import {
-  Button,
-  FormControl,
-  makeStyles,
-  Paper,
-  TextField,
-} from "@material-ui/core";
+import { Button, FormControl, makeStyles, Paper } from "@material-ui/core";
 import { CssTextField } from "./AddSnippet";
 
 const useStyles = makeStyles((theme) => ({
@@ -45,41 +39,44 @@ export default function SignupForm() {
   };
   return (
     <Paper elevation={3} className={classes.root}>
-      <FormControl variant="outlined" className={classes.formControl}>
-        <CssTextField
-          id="outlined-multiline-flexible"
-          label="Enter Fullname"
-          required
-          variant="outlined"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-        />
+      <form onSubmit={submitSignupForm}>
+        <FormControl variant="outlined" className={classes.formControl}>
+          <CssTextField
+            id="outlined-multiline-flexible"
+            label="Enter Fullname"
+            required
+            variant="outlined"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+          />
 
-        <CssTextField
-          id="outlined-multiline-flexible"
-          label="Enter Email Address"
-          required
-          variant="outlined"
-          value={email}
-          className={classes.inputSpacing}
-          onChange={(e) => setEmail(e.target.value)}
-        />
+          <CssTextField
+            id="outlined-multiline-flexible"
+            label="Enter Email Address"
+            type="email"
+            required
+            variant="outlined"
+            value={email}
+            className={classes.inputSpacing}
+            onChange={(e) => setEmail(e.target.value)}
+          />
 
-        <CssTextField
-          id="outlined-multiline-flexible"
-          label="Enter Password"
-          required
-          variant="outlined"
-          value={password}
-          type="password"
-          className={classes.inputSpacing}
-          onChange={(e) => setPassword(e.target.value)}
-        />
+          <CssTextField
+            id="outlined-multiline-flexible"
+            label="Enter Password"
+            required
+            variant="outlined"
+            value={password}
+            type="password"
+            className={classes.inputSpacing}
+            onChange={(e) => setPassword(e.target.value)}
+          />
 
-        <Button variant="contained" type="submit" onClick={submitSignupForm}>
-          Signup
-        </Button>
-      </FormControl>
+          <Button variant="contained" type="submit">
+            Signup
+          </Button>
+        </FormControl>
+      </form>
     </Paper>
   );
 }
