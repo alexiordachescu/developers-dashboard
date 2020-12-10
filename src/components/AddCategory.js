@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { addCategory } from "../store/categories/actions";
 import { makeStyles } from "@material-ui/core";
+import { CssTextField } from "./AddSnippet";
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
@@ -23,7 +24,7 @@ export default function AddCategory() {
 
   return (
     <>
-      <TextField
+      <CssTextField
         id="addCategory"
         label="Add Category"
         variant="outlined"
