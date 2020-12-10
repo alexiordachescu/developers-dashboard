@@ -166,7 +166,7 @@ export const deleteSnippet = (id) => {
       );
 
       // console.log("snippet deleted?", response.data);
-      dispatch(snippetDeleteSuccess(response.id));
+      dispatch(snippetDeleteSuccess(response.data));
       dispatch(snippetsDoneLoading());
     } catch (error) {
       if (error.response?.data?.message) {
