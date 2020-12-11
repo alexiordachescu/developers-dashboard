@@ -17,6 +17,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: "#333333",
     color: "#FFFFFF",
     padding: "10px 0 10px 0",
+    wordBreak: "break-all",
   },
   toolbarTitle: {
     color: "#58A6FF",

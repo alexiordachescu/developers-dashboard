@@ -1,18 +1,11 @@
-/* .App {
-  text-align: center;
-  background-color: #212121;
-} */
-
 html,
 body,
 #root,
 .App {
-  min-height: 100vh;
   max-width: 100%;
   margin-bottom: 0.8%;
   background-color: #212121;
   text-align: center;
-  word-break: break-all;
 }
 
 .App-logo {
