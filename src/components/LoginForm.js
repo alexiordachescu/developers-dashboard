@@ -40,12 +40,12 @@ export default function LoginForm() {
   return (
     <Paper elevation={3} className={classes.root}>
       <form onSubmit={submitLoginForm}>
-        <FormControl variant="outlined" className={classes.formControl}>
+        <FormControl variant="filled" className={classes.formControl}>
           <CssTextField
             label="Enter Email Address"
             type="email"
             required
-            variant="outlined"
+            variant="filled"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             inputProps={{
@@ -56,7 +56,7 @@ export default function LoginForm() {
           <CssTextField
             label="Enter Password"
             required
-            variant="outlined"
+            variant="filled"
             type="password"
             value={password}
             className={classes.inputSpacing}

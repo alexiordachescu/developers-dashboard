@@ -65,7 +65,7 @@ export default function AddSnippet() {
   return (
     <Paper elevation={3} className={classes.root}>
       <form onSubmit={submitForm}>
-        <FormControl variant="outlined" className={classes.formControl}>
+        <FormControl variant="filled" className={classes.formControl}>
           <InputLabel
             id="demo-simple-select-outlined-label"
             style={{
@@ -94,7 +94,7 @@ export default function AddSnippet() {
             label="Add a snippet name"
             fullWidth
             required
-            variant="outlined"
+            variant="filled"
             value={form.name}
             className={classes.inputSpacing}
             onChange={(e) => setForm({ ...form, name: e.target.value })}
@@ -108,7 +108,7 @@ export default function AddSnippet() {
             multiline
             fullWidth
             required
-            variant="outlined"
+            variant="filled"
             value={form.content}
             className={classes.inputSpacing}
             onChange={(e) => setForm({ ...form, content: e.target.value })}
@@ -118,7 +118,7 @@ export default function AddSnippet() {
             label="Add a comment"
             multiline
             fullWidth
-            variant="outlined"
+            variant="filled"
             value={form.comment}
             className={classes.inputSpacing}
             onChange={(e) => setForm({ ...form, comment: e.target.value })}

@@ -52,7 +52,7 @@ export default function AddLink() {
   return (
     <Paper elevation={3} className={classes.root}>
       <form onSubmit={submitForm}>
-        <FormControl variant="outlined" className={classes.form}>
+        <FormControl variant="filled" className={classes.form}>
           <InputLabel
             id="demo-simple-select-outlined-label"
             style={{ color: "white" }}
@@ -78,7 +78,7 @@ export default function AddLink() {
             label="Add a link name"
             fullWidth
             required
-            variant="outlined"
+            variant="filled"
             value={form.name}
             className={classes.inputSpacing}
             onChange={(e) => setForm({ ...form, name: e.target.value })}
@@ -92,7 +92,7 @@ export default function AddLink() {
             multiline
             fullWidth
             required
-            variant="outlined"
+            variant="filled"
             value={form.content}
             className={classes.inputSpacing}
             onChange={(e) => setForm({ ...form, content: e.target.value })}

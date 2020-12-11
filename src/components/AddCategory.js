@@ -27,7 +27,7 @@ export default function AddCategory() {
       <CssTextField
         id="addCategory"
         label="Add Category"
-        variant="outlined"
+        variant="filled"
         value={category}
         onChange={(e) => setCategory(e.target.value)}
         className={classes.toolbar}
