@@ -1,4 +1,10 @@
+html,
+body,
+#root,
 .App {
+  max-width: 100%;
+  margin-bottom: 0.8%;
+  background-color: #212121;
   text-align: center;
 }
 
@@ -35,4 +41,8 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.active {
+  text-transform: uppercase;
 }
