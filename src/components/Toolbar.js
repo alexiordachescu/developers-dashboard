@@ -29,6 +29,8 @@ export default function Toolbar({ selectCategory }) {
   const categories = useSelector(selectAllCategories);
   const classes = useStyles();
 
+  categories.sort((a, b) => a.name.localeCompare(b.name));
+
   return (
     <div>
       <Paper elevation={2} className={classes.toolbar}>
