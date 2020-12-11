@@ -12,6 +12,7 @@ body,
   margin-bottom: 0.8%;
   background-color: #212121;
   text-align: center;
+  word-break: break-all;
 }
 
 .App-logo {
