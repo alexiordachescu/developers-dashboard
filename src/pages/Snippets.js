@@ -47,7 +47,7 @@ const Snippets = () => {
 
   return (
     <Grid container>
-      <Grid item xs={12} md={2} lg={2} style={{ marginBottom: "10px" }}>
+      <Grid item xs={12} md={12} lg={2} style={{ marginBottom: "10px" }}>
         <StickyBox offsetTop={90} offsetBottom={20}>
           <Toolbar selectCategory={selectCategory} />
         </StickyBox>
@@ -55,9 +55,8 @@ const Snippets = () => {
       <Grid
         item
         container
-        lg={6}
+        lg={7}
         direction="column"
-        justify="space-between"
         alignItems="stretch"
         spacing={2}
         className={classes.gridStyle}
@@ -72,7 +71,7 @@ const Snippets = () => {
           })
           .map((s) => {
             return (
-              <Grid key={s.id} item xs={12}>
+              <Grid key={s.id} item style={{ width: "100%" }}>
                 <CodeSnippetCard
                   name={s.name}
                   content={s.content}
@@ -83,7 +82,7 @@ const Snippets = () => {
             );
           })}
       </Grid>
-      <Grid item xs={12} md={12} lg={4}>
+      <Grid item xs={12} md={12} lg={3}>
         <StickyBox offsetTop={90} offsetBottom={20}>
           <AddSnippet />
         </StickyBox>

@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
   toolbar: {
     backgroundColor: "#333333",
     color: "#FFFFFF",
-    padding: "1rem",
+    padding: "10px 0 10px 0",
   },
   toolbarTitle: {
     color: "#58A6FF",
@@ -56,6 +56,7 @@ export default function Toolbar({ selectCategory }) {
                       onClick={() => selectCategory(category.id)}
                       color="primary"
                       checkedIcon={<Favorite />}
+                      style={{ marginLeft: "10px" }}
                     />
                   }
                   label={category.name}
@@ -67,6 +68,12 @@ export default function Toolbar({ selectCategory }) {
                       "Are you sure? Deleting this category will also remove its links and snippets"
                     );
                     if (confirm) dispatch(deleteCategory(category.id));
+                  }}
+                  style={{
+                    maxWidth: "30px",
+                    maxHeight: "30px",
+                    minWidth: "30px",
+                    minHeight: "30px",
                   }}
                 />
               </Grid>

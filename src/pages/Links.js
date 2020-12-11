@@ -45,9 +45,8 @@ const Links = () => {
       <Grid
         item
         container
-        lg={6}
+        lg={7}
         direction="column"
-        justify="space-between"
         alignItems="stretch"
         spacing={2}
         className={classes.gridStyle}
@@ -68,7 +67,7 @@ const Links = () => {
             );
           })}
       </Grid>
-      <Grid item xs={12} lg={4}>
+      <Grid item xs={12} lg={3}>
         <StickyBox offsetTop={90} offsetBottom={20}>
           <AddLink />
         </StickyBox>
