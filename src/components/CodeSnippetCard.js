@@ -23,6 +23,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
       backgroundColor: "#333333",
+      wordBreak: "break-all",
     },
   },
   media: {
