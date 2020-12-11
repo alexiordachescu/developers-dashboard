@@ -105,7 +105,7 @@ const CodeSnippetCard = (props) => {
               >
                 <CssTextField
                   label="Snippet"
-                  variant="outlined"
+                  variant="filled"
                   multiline
                   fullWidth
                   defaultValue={props.content}
@@ -137,7 +137,7 @@ const CodeSnippetCard = (props) => {
               <Typography gutterBottom variant="h5" component="h2">
                 <CssTextField
                   label="Comment"
-                  variant="outlined"
+                  variant="filled"
                   fullWidth
                   defaultValue={props.comment}
                   onChange={(event) => setEditCommentText(event.target.value)}

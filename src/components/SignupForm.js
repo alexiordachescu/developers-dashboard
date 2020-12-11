@@ -40,11 +40,11 @@ export default function SignupForm() {
   return (
     <Paper elevation={3} className={classes.root}>
       <form onSubmit={submitSignupForm}>
-        <FormControl variant="outlined" className={classes.formControl}>
+        <FormControl variant="filled" className={classes.formControl}>
           <CssTextField
             label="Enter Fullname"
             required
-            variant="outlined"
+            variant="filled"
             value={name}
             onChange={(e) => setName(e.target.value)}
             inputProps={{
@@ -56,7 +56,7 @@ export default function SignupForm() {
             label="Enter Email Address"
             type="email"
             required
-            variant="outlined"
+            variant="filled"
             value={email}
             className={classes.inputSpacing}
             onChange={(e) => setEmail(e.target.value)}
@@ -68,7 +68,7 @@ export default function SignupForm() {
           <CssTextField
             label="Enter Password"
             required
-            variant="outlined"
+            variant="filled"
             value={password}
             type="password"
             className={classes.inputSpacing}
