@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import { selectToken } from "../store/user/selectors";
 import { Link, useHistory } from "react-router-dom";
 import LoginForm from "../components/LoginForm";
+import { Typography } from "@material-ui/core";
 
 export default function Login() {
   const token = useSelector(selectToken);
@@ -19,7 +20,7 @@ export default function Login() {
       <LoginForm />
 
       <Link style={{ color: "white", textDecoration: "none" }} to="/signUp">
-        Please use this link to create an account!
+        <Typography>Please use this link to create an account</Typography>
       </Link>
     </div>
   );
